@@ -11,6 +11,7 @@ int main(int argc, char **argv)
 	read_map(argv[1], map);
 	printf("height : %d\n", map->height);
 	printf("width : %d\n", map->width);
+	free(map);
 
 	return (0);
 }

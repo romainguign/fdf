@@ -20,6 +20,7 @@ typedef struct s_map
 
 t_map *map_init(void);
 void read_map(char *file_name, t_map *map);
+void NewFunction(t_point **y_value, int y, char *line);
 int ft_count_width(const char *str, char c);
 t_point read_value(char *line);
 

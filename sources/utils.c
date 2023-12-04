@@ -19,3 +19,24 @@ int ft_count_width(const char *str, char c)
         count++;
     return (count);
 }
+
+void free_tpoint(t_point **point, t_map *map)
+{
+    int i;
+
+    i = 0;
+    while (i < map->height)
+    {
+        free(point[i]);
+    }
+}
+
+void free_map(t_map *map)
+{
+    int i;
+
+    i = 0;
+    free_tpoint(map->y_value, map);
+    free(map->y_value);
+    free(map);
+}
