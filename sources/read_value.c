@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_value.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/06 12:50:38 by roguigna          #+#    #+#             */
+/*   Updated: 2023/12/06 12:57:56 by roguigna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fdf.h"
 
-int is_hexa(char *line, char *base)
+int	is_hexa(char *line, char *base)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	if (line[i] != '0' || line[i + 1] != 'x')
@@ -16,11 +28,11 @@ int is_hexa(char *line, char *base)
 		while (base[j])
 		{
 			if (base[j] == line[i])
-				break;
+				break ;
 			j++;
 		}
 		if (!base[j])
-			break;
+			break ;
 		i++;
 	}
 	if (i - 9 != 0)
@@ -28,14 +40,14 @@ int is_hexa(char *line, char *base)
 	return (1);
 }
 
-t_point read_value(char *line)
+int	read_value(char *line)
 {
-	int i;
-	t_point y_value;
+	int	i;
+	int	y_value;
 
 	i = 0;
-	y_value.y = ft_atoi(line);
-	y_value.color = 0xFF0000;
+	y_value = ft_atoi(line);
+	// y_value.color = 0xFF0000;
 	// while (line[i] != ' ' && line[i] != '\n' && line[i])
 	// {
 	// 	if (line[i] == ',' && is_hexa(&line[i + 1], "0123456789ABCDEF") == 1)

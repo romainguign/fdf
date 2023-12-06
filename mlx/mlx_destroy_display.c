@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   mlx_destroy_display.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 12:50:44 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/06 12:52:33 by roguigna         ###   ########.fr       */
+/*   Created: 2020/10/03 18:56:35 by mg                #+#    #+#             */
+/*   Updated: 2020/10/04 01:55:35 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "mlx_int.h"
 
-t_map	*map_init(void)
+int	mlx_destroy_display(t_xvar *xvar)
 {
-	t_map	*map;
-
-	map = malloc(sizeof(t_map));
-	// if (!map)
-	//     terminate();
-	map->size_x = 0;
-	map->size_y = 0;
-	return (map);
+	XCloseDisplay(xvar->display);
 }

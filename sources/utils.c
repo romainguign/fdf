@@ -1,42 +1,109 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/06 12:50:33 by roguigna          #+#    #+#             */
+/*   Updated: 2023/12/06 12:58:32 by roguigna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fdf.h"
 
-int ft_count_width(const char *str, char c)
+static char	*ft_strjoin_get_fil_ver(char *s1, char *s2)
 {
-    int count;
-    int i;
+	unsigned int	i;
+	unsigned int	j;
+	char			*str;
 
-    i = 1;
-    count = 0;
-    if (!str || !str[0])
-        return (0);
-    while (str[i])
-    {
-        if (str[i - 1] != c && str[i] == c)
-            count++;
-        i++;
-    }
-    if (!str[i] && str[i - 1] != c)
-        count++;
-    return (count);
+	i = ft_strlen((char *)s1) + ft_strlen((char *)s2);
+	str = malloc((i + 2) * sizeof(char));
+	if (str == NULL)
+	{
+		free(s1);
+		return (NULL);
+	}
+	i = 0;
+	while (s1 && s1[i])
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	j = -1;
+	while (s2 && s2[++j])
+		str[i + j] = s2[j];
+	str[i + j] = 0;
+	if (s1 != NULL)
+		free(s1);
+	return (str);
 }
 
-void free_tpoint(t_point **point, t_map *map)
+char	*get_file(char *file)
 {
-    int i;
+	char	*buffer;
+	char	*str;
+	int		fd;
+	int		ret;
 
-    i = 0;
-    while (i < map->height)
-    {
-        free(point[i]);
-    }
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		return (NULL);
+	buffer = malloc(64 * sizeof(char));
+	if (buffer == NULL)
+		return (NULL);
+	str = NULL;
+	while (1)
+	{
+		ret = read(fd, buffer, 64);
+		if (ret == 0)
+			break ;
+		buffer[ret] = 0;
+		str = ft_strjoin_get_fil_ver(str, buffer);
+		if (str == NULL)
+			break ;
+	}
+	free(buffer);
+	return (str);
 }
 
-void free_map(t_map *map)
+int	ft_count_size_x(const char *str, char c)
 {
-    int i;
+	int	count;
+	int	i;
 
-    i = 0;
-    free_tpoint(map->y_value, map);
-    free(map->y_value);
-    free(map);
+	i = 1;
+	count = 0;
+	if (!str || !str[0])
+		return (0);
+	while (str[i])
+	{
+		if (str[i - 1] != c && str[i] == c)
+			count++;
+		i++;
+	}
+	if (!str[i] && str[i - 1] != c)
+		count++;
+	return (count);
 }
+
+// void free_tab(int **point, int size)
+// {
+//     int i;
+
+//     i = 0;
+//     while (i < map->size_y)
+//     {
+//         free(point[i]);
+//         i++
+//     }
+// }
+
+// void free_map(t_map *map)
+// {
+//     int i;
+//     i = 0;
+//     free_tab(map->y_value, map);
+//     free(map);
+// }
