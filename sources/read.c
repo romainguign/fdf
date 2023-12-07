@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:36 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/06 12:56:55 by roguigna         ###   ########.fr       */
+/*   Updated: 2023/12/07 18:47:23 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	get_size_y(char *file_name)
 	}
 	free(line);
 	close(fd);
-	return (size_y - 1);
+	return (size_y - 2);
 }
 
 int	get_size_x(char *file_name)
@@ -53,22 +53,22 @@ int	*get_line_value(char *buff, int len, int size_x)
 {
 	int	i;
 	int	x;
-	int	*y_value;
+	int	*z_value;
 
 	i = 0;
 	x = 0;
-	y_value = malloc(sizeof(int) * size_x);
-	if (!y_value)
+	z_value = malloc(sizeof(int) * size_x);
+	if (!z_value)
 		return (NULL);
-	if (!y_value)
+	if (!z_value)
 		return (0);
 	while (i < len)
 	{
 		if (buff[i] != ' ' && buff[i] != '\n' && buff[i])
 		{
-			y_value[x] = read_value(&buff[i]);
-			printf("%d ", y_value[x]);
-			if (y_value[x] < 10)
+			z_value[x] = read_value(&buff[i]);
+			printf("%d ", z_value[x]);
+			if (z_value[x] < 10)
 				printf(" ");
 			while (buff[i] != ' ' && buff[i] != '\n' && buff[i])
 				i++;
@@ -76,10 +76,10 @@ int	*get_line_value(char *buff, int len, int size_x)
 		}
 		i++;
 	}
-	return (y_value);
+	return (z_value);
 }
 
-int	**get_values(char *file_name, int **y_value, int size_x)
+int	**get_values(char *file_name, int **z_value, int size_x)
 {
 	int		y;
 	int		i;
@@ -96,16 +96,16 @@ int	**get_values(char *file_name, int **y_value, int size_x)
 	{
 		if (buffer[i] == '\n')
 		{
-			y_value[y] = get_line_value(buffer + len, i - len, size_x);
+			z_value[y] = get_line_value(buffer + len, i - len, size_x);
 			y++;
 			len = i;
 			printf("\n");
 		}
 		i++;		
 	}
-	if (!y_value[y])
+	if (!z_value[y])
 		return (0);
-	return (y_value);
+	return (z_value);
 }
 
 void	read_map(char *file_name, t_map *map)
@@ -113,8 +113,8 @@ void	read_map(char *file_name, t_map *map)
 	map->size_y = get_size_y(file_name);
 	map->size_x = get_size_x(file_name);
 
-	map->y_value = malloc(sizeof(int *) * (map->size_y * map->size_x));
-	if (!map->y_value)
-		free(map->y_value);
-	map->y_value = get_values(file_name, map->y_value, map->size_x);
+	map->z_value = malloc(sizeof(int *) * (map->size_y * map->size_x));
+	if (!map->z_value)
+		free(map->z_value);
+	map->z_value = get_values(file_name, map->z_value, map->size_x);
 }

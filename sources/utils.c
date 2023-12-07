@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:33 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/06 12:58:32 by roguigna         ###   ########.fr       */
+/*   Updated: 2023/12/07 17:40:02 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,6 @@ int	ft_count_size_x(const char *str, char c)
 // {
 //     int i;
 //     i = 0;
-//     free_tab(map->y_value, map);
+//     free_tab(map->z_value, map);
 //     free(map);
 // }

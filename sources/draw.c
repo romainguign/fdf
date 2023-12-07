@@ -6,44 +6,96 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:24:32 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/06 17:53:14 by roguigna         ###   ########.fr       */
+/*   Updated: 2023/12/07 16:20:52 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	draw_line(t_map *map, int x1, int y1, int x2, int y2)
+void	right_line(t_map *map, t_line point, int dx)
 {
-	// if (x1 - x2 < y1 - y2)
-	int i;
-	int x;
-	int y;
-	int j;
+	int	dy;
 	
-	i = (x2 - x1) % (y2 - y1);
-	printf("xlen : %d, y len = %d\n", x2 - x1, y2 - y1);
-	printf("i = %d\n", i);
-	x = 0;
-	y = 0;
-
-	while (x1 + x <= x2 && y1 + y <= y2 )
+	dy = point.y2 - point.y1;
+	if (dy > 0)
 	{
-		mlx_pixel_put(map->mlx, map->mlx_win, x1 + x, y1 + y, 0xFFFFFF);
-		x++;	
-		if  (i > 0 && x % (y2 - y1) == 0)
-		{
-			mlx_pixel_put(map->mlx, map->mlx_win, x1 + x, y1 + y, 0xFFFFFF);
-			y++;
-			x++;
-			i--;
-		}
-		if(x % ((x2 - x1) / (y2 - y1)) == 0)
-			y++;
+		if (dx >= dy)
+			bottom_right_diag(map, point, dx, dy);
+		else
+			bottom_right_vert(map, point, dx, dy);
+		return ;
 	}
-	// while (x1 + x < x2)
-	// {
-	// 	mlx_pixel_put(map->mlx, map->mlx_win, x1 + x, y1 + y, 0xFFFFFF);
-	// 	x++;
-	// }
+	else if (dy < 0)
+	{
+		if (dx >= -dy)
+			top_right_diag(map, point, dx, dy);
+		else
+			top_right_vert(map, point, dx, dy);
+		return ;
+	}
+	while (point.x1 != point.x2)
+	{
+		mlx_pixel_put(map->mlx, map->mlx_win, point.x1, point.y1, 0xFFFFFF);
+		point.x1++;
+	}
+}
+
+void	left_line(t_map *map, t_line point, int dx)
+{
+	int	dy;
 	
+	dy = point.y2 - point.y1;
+	if (dy > 0)
+	{
+		if (-dx >= dy)
+			bottom_letf_diag(map, point, dx, dy);
+		else
+			bottom_letf_vert(map, point, dx, dy);
+		return ;
+	}
+	else if (dy < 0)
+	{
+		if (dx <= dy)	
+			top_left_diag(map, point, dx, dy);
+		else
+			top_left_vert(map, point, dx, dy);
+		return ;
+	}
+	while (point.x1 != point.x2)
+	{
+		mlx_pixel_put(map->mlx, map->mlx_win, point.x1, point.y1, 0xFFFFFF);
+		point.x1--;
+	}
+}
+
+void	vertical_line(t_map *map, t_line point)
+{
+	int	dy;
+	int	direction;
+	
+	dy = point.y2 - point.y1;
+	direction = 1;
+	if (dy < 0)
+		direction = -1;
+	while (point.y1 != point.y2)
+	{
+		mlx_pixel_put(map->mlx, map->mlx_win, point.x1, point.y1, 0xFFFFFF);
+		point.y1 += direction;
+	}
+	
+}
+
+void	draw_line(t_map *map, t_line point)
+{
+	int	dx;
+	int dy;
+	
+	dx = point.x2 - point.x1;
+	dy = 0;
+	if (dx > 0)
+		right_line(map, point, dx);
+	else if (dx < 0)
+		left_line(map, point, dx);
+	else
+		vertical_line(map, point);
 }
