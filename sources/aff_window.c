@@ -6,42 +6,51 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:05:52 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/07 18:39:00 by roguigna         ###   ########.fr       */
+/*   Updated: 2023/12/09 19:51:08 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-// void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-// {
-// 	char	*dst;
+#include "../includes/test.h"
+#include <stdio.h>
 
-// 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-// 	*(unsigned int*)dst = color;
-// }
-
-void    aff_window(t_map *map)
+void    aff_window(t_map *map, t_twoD **two_d_map)
 {
-    t_line point;
-    
     map->mlx = mlx_init();
-    map->mlx_win = mlx_new_window(map->mlx, 960, 540, "Fdf");
+    map->mlx_win = mlx_new_window(map->mlx, 1920, 1080, "Fdf");
 
     int x;
     int y;
-    x = 0;
     y = 0;
-    while (y < map->size_y * 15)
+    while (y < map->size_y - 1)
     {
         x = 0;
-        while (x < map->size_x * 15)
+        map->cur_x = y;
+        while (x < map->size_x - 1)
         {
-            point = two_dimension_point(map, x, y);
-            draw_line(map, point);
+            map->cur_x = x;
+            draw_line(map, two_d_map[y][x], two_d_map[y + 1][x]);
+            draw_line(map, two_d_map[y][x], two_d_map[y][x + 1]);
             x++;
         }
         y++;
     }
-    //mlx_pixel_put(map->mlx, map->mlx_win, point.x2, point.y2, 0xFF0000);
+    x = 0;
+    map->cur_y = map->size_y - 1;
+    while (x < map->size_x - 1)
+    {
+        map->cur_x = x;
+        draw_line(map, two_d_map[y][x], two_d_map[y][x + 1]);
+        x++;
+    }
+    y = 0;
+    map->cur_x = map->size_x - 1;
+    while (y < map->size_y - 1)
+    {
+        map->cur_y = y;
+        draw_line(map, two_d_map[y][x], two_d_map[y + 1][x]);
+        y++;
+    }
 	mlx_loop(map->mlx);
 }

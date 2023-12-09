@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:24:32 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/07 16:20:52 by roguigna         ###   ########.fr       */
+/*   Updated: 2023/12/09 19:00:33 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	right_line(t_map *map, t_line point, int dx)
 	}
 	while (point.x1 != point.x2)
 	{
-		mlx_pixel_put(map->mlx, map->mlx_win, point.x1, point.y1, 0xFFFFFF);
+		mlx_pixel_put(map->mlx, map->mlx_win, point.x1, point.y1, gradient_color(map, dx, dy, point));
 		point.x1++;
 	}
 }
@@ -63,7 +63,7 @@ void	left_line(t_map *map, t_line point, int dx)
 	}
 	while (point.x1 != point.x2)
 	{
-		mlx_pixel_put(map->mlx, map->mlx_win, point.x1, point.y1, 0xFFFFFF);
+		mlx_pixel_put(map->mlx, map->mlx_win, point.x1, point.y1, gradient_color(map, dx, dy, point));
 		point.x1--;
 	}
 }
@@ -79,23 +79,30 @@ void	vertical_line(t_map *map, t_line point)
 		direction = -1;
 	while (point.y1 != point.y2)
 	{
-		mlx_pixel_put(map->mlx, map->mlx_win, point.x1, point.y1, 0xFFFFFF);
+		mlx_pixel_put(map->mlx, map->mlx_win, point.x1, point.y1, gradient_color(map, point.x1, dy, point));
 		point.y1 += direction;
 	}
 	
 }
 
-void	draw_line(t_map *map, t_line point)
+void	draw_line(t_map *map, t_twoD first_point, t_twoD second_point)
 {
 	int	dx;
 	int dy;
+	t_line	*point;
 	
-	dx = point.x2 - point.x1;
+	point = malloc(sizeof(t_line));
+	point->x1 = first_point.x;
+	point->y1 = first_point.y;
+	point->x2 = second_point.x;
+	point->y2 = second_point.y;
+	dx = point->x2 - point->x1;
 	dy = 0;
 	if (dx > 0)
-		right_line(map, point, dx);
+		right_line(map, *point, dx);
 	else if (dx < 0)
-		left_line(map, point, dx);
+		left_line(map, *point, dx);
 	else
-		vertical_line(map, point);
+		vertical_line(map, *point);
+	free(point);
 }

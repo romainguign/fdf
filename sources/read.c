@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:36 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/07 18:47:23 by roguigna         ###   ########.fr       */
+/*   Updated: 2023/12/09 19:44:09 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	**get_values(char *file_name, int **z_value, int size_x)
 		}
 		i++;		
 	}
-	if (!z_value[y])
+	if (!z_value[y - 1])
 		return (0);
 	return (z_value);
 }
@@ -117,4 +117,7 @@ void	read_map(char *file_name, t_map *map)
 	if (!map->z_value)
 		free(map->z_value);
 	map->z_value = get_values(file_name, map->z_value, map->size_x);
+	map->color = malloc(sizeof(int *) * (map->size_y * map->size_x));
+	map->color = get_colors(map, map->color);
+	printf("%x\n", map->color[3][3]);
 }

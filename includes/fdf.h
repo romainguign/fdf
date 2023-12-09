@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:23 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/07 17:40:02 by roguigna         ###   ########.fr       */
+/*   Updated: 2023/12/09 19:43:43 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,28 @@
 
 typedef struct s_map
 {
-	int		size_x;
-	int		size_y;
-	void	*mlx;
-	void	*mlx_win;
-	int 	**z_value;
+	int			size_x;
+	int			size_y;
+	int			cur_x;
+	int			cur_y;
+	int			**color;
+	int 		**z_value;
+	void		*mlx;
+	void		*mlx_win;
 } t_map;
+
+typedef struct s_twoD
+{
+	int	x;
+	int	y;
+} t_twoD;
 
 typedef struct s_line
 {
 	int	x1;
-	int	x2;
-	int	y1;
 	int	y2;
+	int y1;
+	int x2;
 } t_line;
 
 t_map *map_init(void);
@@ -45,8 +54,8 @@ int 	read_value(char *line);
 char    *get_file(char *file);
 
 //////////////////////////////// DRAW /////////////////////////////
-void	aff_window(t_map *map);
-void	draw_line(t_map *map, t_line point);
+void	aff_window(t_map *map, t_twoD **two_d_map);
+void	draw_line(t_map *map, t_twoD first_point, t_twoD second_point);
 void	bottom_right_diag(t_map *map, t_line point, int dx, int dy);
 void	bottom_right_vert(t_map *map, t_line point, int dx, int dy);
 void	top_right_vert(t_map *map, t_line point, int dx, int dy);
@@ -56,6 +65,9 @@ void	bottom_letf_vert(t_map *map, t_line point, int dx, int dy);
 void	top_left_diag(t_map *map, t_line point, int dx, int dy);
 void	top_left_vert(t_map *map, t_line point, int dx, int dy);
 
-t_line	two_dimension_point(t_map *map, int x, int y);
+t_twoD	**make_twod_map(t_map *map, t_twoD **two_d_map);
+
+int	**get_colors(t_map *map, int **color);
+int	gradient_color(t_map *map, int dx, int dy, t_line point);
 
 #endif

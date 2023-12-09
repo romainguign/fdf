@@ -6,34 +6,14 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:47:36 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/07 19:07:58 by roguigna         ###   ########.fr       */
+/*   Updated: 2023/12/09 19:50:47 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include <stdio.h>
 
-// int **multiply_matrix(int a[][10], int b[][10], int c[][10], int m, int n, int p, int q) {
-//     int i;
-// 	int j;
-// 	int k;
-	
-//     for (i = 0; i < m; ++i) {
-//         for (j = 0; j < q; ++j) {
-//             c[i][j] = 0;
-//         }
-//     }
-
-//     for (i = 0; i < m; ++i) {
-//         for (j = 0; j < q; ++j) {
-//             for (k = 0; k < n; ++k) {
-//                 c[i][j] += a[i][k] * b[k][j];
-//             }
-//         }
-//     }
-// 	return(c);
-// }
-
-double	*to_twoD(t_map *map, int x, int y)
+t_twoD	to_twoD(t_map *map, int x, int y, t_twoD tab)
 {
 
 	// float matrix_beta[3][3];
@@ -75,34 +55,46 @@ double	*to_twoD(t_map *map, int x, int y)
 	// }
 	double alpha = 0.610865238;
 	double	beta = 0.785398;
-	int x_aff = x +25;
-	int y_aff = y +25;
-	printf("x1: %d, y1: %d\n", map->z_value[y][x], y); // OK COMMENTAIRE JSP POURQUOI MAIS ZVALUE CASSE TOUT 
-	//double *tab = malloc(sizeof(double) * 3);
-	int a = x_aff - map->z_value[y][x];
-	// tab[0] = x_aff * cos(beta) - map->z_value[y][x]*sin(beta);
-	// /tab[0] = x_aff - map->z_value[y][x];
-	// printf("x1: %d, y1: %f\n", a, tab[1]);
-	//tab[1] = (2 * y_aff * cos(alpha) - x_aff * cos(alpha + beta) + x_aff * cos(alpha-beta)+ map->z_value[y][x] * sin(alpha+beta) + map->z_value[y][x] * sin(alpha-beta)) / 2;
-	//tab[2] = 0;
-	
-	return(0);
+	int		sizing;
+	// double alpha = -0.3;
+	// double	beta = -0.8;
+	if (map->size_x > map->size_y)
+		sizing = 1080 / (map->size_x  + (map->size_x * 10) / 100);
+	else
+		sizing = 1080 / (map->size_y  + (map->size_y * 10) / 100);
+	int x_aff = (x + sizing * (x + 1));
+	int y_aff = (y + sizing * (y + 1));
+	// tab = malloc(sizeof(t_twoD));
+	tab.x = x_aff * cos(beta) - map->z_value[y][x] * -sin(beta); // j'ai ajoute le -
+	tab.y = (2 * y_aff * cos(alpha) - x_aff * cos(alpha + beta) + x_aff * cos(alpha-beta)+ map->z_value[y][x] * sin(alpha+beta) + map->z_value[y][x] * sin(alpha-beta)) / 2;
+	// tab.x = 5;
+	// tab.y = 5;
+	// printf("x1: %d, y1: %d\n", tab.x, tab.y);
+
+	return(tab);
 }
 
-t_line	two_dimension_point(t_map *map, int x, int y)
-{
-	double	*twoD_matrix;
-	t_line	point;
 
-	twoD_matrix = to_twoD(map, x, y);
-	printf("x1: %d, y1: %d\n", point.x1, point.y1);
-	point.x1 = twoD_matrix[0];
-	point.y1 = twoD_matrix[1];
-	printf("x1: %d, y1: %d\n", point.x1, point.y1);
-	if (x < map->size_x - 1)
-		x += 1;
-	to_twoD(map, x + 1, y);
-	point.x2 = twoD_matrix[0];
-	point.y2 = twoD_matrix[0];
-	return (point);
+
+t_twoD	**make_twod_map(t_map *map, t_twoD **two_d_map)
+{
+	int	y;
+	int	x;
+	
+	two_d_map = malloc(sizeof(t_twoD *) * (map->size_y * map->size_x));
+	if (!two_d_map)
+		return (0);
+	y = 0;
+	while (y < map->size_y)
+	{
+		x = 0;
+		two_d_map[y] = malloc(sizeof(t_twoD) * map->size_x);
+		while (x < map->size_x)
+		{
+			two_d_map[y][x] = to_twoD(map, x, y, two_d_map[y][x]);
+			x++;
+		}
+		y++;
+	}
+	return (two_d_map);
 }

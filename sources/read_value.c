@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:38 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/07 17:40:02 by roguigna         ###   ########.fr       */
+/*   Updated: 2023/12/09 19:46:42 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,6 @@ int	read_value(char *line)
 	int	z_value;
 
 	i = 0;
-	z_value = ft_atoi(line);
-	// z_value.color = 0xFF0000;
-	// while (line[i] != ' ' && line[i] != '\n' && line[i])
-	// {
-	// 	if (line[i] == ',' && is_hexa(&line[i + 1], "0123456789ABCDEF") == 1)
-	// 		z_value.color = 0xFF0000;
-	// 	i++;
-	// }
+	z_value = ft_atoi(line) * 6;
 	return (z_value);
 }
