@@ -6,33 +6,34 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:36 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/09 19:44:09 by roguigna         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:43:50 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 #include <stdio.h>
 
 int	get_size_y(char *file_name)
 {
-	char	*line;
-	int		fd;
+	char	*buffer;
 	int		size_y;
+	int		i;
 
-	size_y = 0;
-	fd = open(file_name, O_RDONLY);
-	line = get_next_line(fd);
-	size_y++;
-	while (line)
+	buffer = get_file(file_name);
+	if (!buffer)
+		return (0);
+	i = 0;
+	while (buffer[i])
 	{
-		free(line);
-		line = get_next_line(fd);
-		size_y++ ;
+		if (buffer[i] == '\n')
+			size_y++;
+		i++;
 	}
-	free(line);
-	close(fd);
-	return (size_y - 2);
+	if (!buffer[i] && buffer[i - 1] != '\n' && i != 0)
+		size_y++;
+	free (buffer);
+	return(size_y - 1);
 }
 
 int	get_size_x(char *file_name)
@@ -105,6 +106,7 @@ int	**get_values(char *file_name, int **z_value, int size_x)
 	}
 	if (!z_value[y - 1])
 		return (0);
+	free(buffer);
 	return (z_value);
 }
 
@@ -113,6 +115,7 @@ void	read_map(char *file_name, t_map *map)
 	map->size_y = get_size_y(file_name);
 	map->size_x = get_size_x(file_name);
 
+	printf("%d\n", map->size_y);
 	map->z_value = malloc(sizeof(int *) * (map->size_y * map->size_x));
 	if (!map->z_value)
 		free(map->z_value);

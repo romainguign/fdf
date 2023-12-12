@@ -3,6 +3,9 @@
         "fdf.h": "c",
         "libft.h": "c",
         "fcntl.h": "c",
-        "mlx.h": "c"
+        "mlx.h": "c",
+        "random": "c",
+        "stdio.h": "c",
+        "test.h": "c"
     }
 }

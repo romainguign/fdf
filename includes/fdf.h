@@ -6,17 +6,27 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:23 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/09 19:43:43 by roguigna         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:40:30 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 #define FDF_H
 
-#include "../mlx/mlx.h"
-#include "../libft/includes/libft.h"
+// #include "../mlx/mlx.h"
+#include "mlx.h"
+#include "libft.h"
 #include <fcntl.h>
 #include <math.h>
+
+
+# ifndef WIDTH
+#  define WIDTH 1080
+# endif
+
+# ifndef HEIGHT 
+#  define HEIGHT 720
+# endif
 
 typedef struct s_map
 {
@@ -32,8 +42,8 @@ typedef struct s_map
 
 typedef struct s_twoD
 {
-	int	x;
-	int	y;
+	float	x;
+	float	y;
 } t_twoD;
 
 typedef struct s_line

@@ -1,5 +1,5 @@
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 // void    graphics(t_map *map)
 // {

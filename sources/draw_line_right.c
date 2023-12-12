@@ -6,11 +6,11 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 13:43:47 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/09 18:54:08 by roguigna         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:43:26 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 void	bottom_right_diag(t_map *map, t_line point, int dx, int dy)
 {

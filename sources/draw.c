@@ -6,11 +6,11 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:24:32 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/09 19:00:33 by roguigna         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:43:32 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 void	right_line(t_map *map, t_line point, int dx)
 {

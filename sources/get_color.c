@@ -6,16 +6,16 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:18:42 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/09 19:14:37 by roguigna         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:43:36 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 int	gradient_color(t_map *map, int dx, int dy, t_line point)
 {
-	if (point.x2 - point.x1 + point.y2 - point.y1 < 10)
-		return(0xFF0000);
+	// if (map < 10)
+	// 	return(0xFF0000);
 	return(map->color[map->cur_y][map->cur_x]);
 }
 

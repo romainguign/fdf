@@ -6,11 +6,11 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:05:52 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/09 19:51:08 by roguigna         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:43:15 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 #include "../includes/test.h"
 #include <stdio.h>
@@ -18,7 +18,7 @@
 void    aff_window(t_map *map, t_twoD **two_d_map)
 {
     map->mlx = mlx_init();
-    map->mlx_win = mlx_new_window(map->mlx, 1920, 1080, "Fdf");
+    map->mlx_win = mlx_new_window(map->mlx, WIDTH, HEIGHT, "Fdf");
 
     int x;
     int y;

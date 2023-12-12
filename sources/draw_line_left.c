@@ -6,11 +6,11 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:03:49 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/09 18:54:08 by roguigna         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:46:18 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 void	bottom_letf_diag(t_map *map, t_line point, int dx, int dy)
 {

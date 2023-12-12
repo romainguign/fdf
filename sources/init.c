@@ -6,11 +6,11 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:44 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/06 12:52:33 by roguigna         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:43:40 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 t_map	*map_init(void)
 {

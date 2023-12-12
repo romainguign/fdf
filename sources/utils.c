@@ -6,11 +6,11 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:33 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/07 17:40:02 by roguigna         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:44:30 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 static char	*ft_strjoin_get_fil_ver(char *s1, char *s2)
 {

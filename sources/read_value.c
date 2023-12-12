@@ -6,11 +6,11 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:38 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/09 19:46:42 by roguigna         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:43:47 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 int	is_hexa(char *line, char *base)
 {
