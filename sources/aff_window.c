@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:05:52 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/12 14:43:15 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/04 12:03:09 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ void    aff_window(t_map *map, t_twoD **two_d_map)
     map->mlx = mlx_init();
     map->mlx_win = mlx_new_window(map->mlx, WIDTH, HEIGHT, "Fdf");
 
+    map->img = mlx_new_image(map->mlx, WIDTH, HEIGHT);
+
     int x;
     int y;
-    y = 0;
+    y = 0;  
     while (y < map->size_y - 1)
     {
         x = 0;
@@ -52,5 +54,6 @@ void    aff_window(t_map *map, t_twoD **two_d_map)
         draw_line(map, two_d_map[y][x], two_d_map[y + 1][x]);
         y++;
     }
+    mlx_put_image_to_window(map->mlx, map->mlx_win, map->img, 0, 0);
 	mlx_loop(map->mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:41 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/12 14:43:44 by roguigna         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:15:16 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 		return (0);
 	map = map_init();
 	read_map(argv[1], map);
-	// if (!read_map)
+	// if (!&read_map)
 	// 	return (0);
 	two_d_map = make_twod_map(map, two_d_map);
 	if (!two_d_map)

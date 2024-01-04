@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:36 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/12 14:43:50 by roguigna         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:22:30 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	get_size_y(char *file_name)
 	if (!buffer)
 		return (0);
 	i = 0;
+	size_y = 0;
 	while (buffer[i])
 	{
 		if (buffer[i] == '\n')
@@ -116,6 +117,7 @@ void	read_map(char *file_name, t_map *map)
 	map->size_x = get_size_x(file_name);
 
 	printf("%d\n", map->size_y);
+	printf("%d\n", map->size_x);
 	map->z_value = malloc(sizeof(int *) * (map->size_y * map->size_x));
 	if (!map->z_value)
 		free(map->z_value);

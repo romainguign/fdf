@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:23 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/12 14:40:30 by roguigna         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:36:09 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_map
 	int 		**z_value;
 	void		*mlx;
 	void		*mlx_win;
+	void		*img;
 } t_map;
 
 typedef struct s_twoD
