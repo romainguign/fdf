@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:18:42 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/12 15:51:11 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/04 15:07:42 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int put_color(int z_value)
 {
 	int color;
 
-	color = 0xFFFFFF;
+	color = 0x77FFFFFF;
 	// if (z_value > 0)
 	// 	color = 0xFF0000;
 	return(color);

@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:33 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/12 14:44:30 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/04 17:09:42 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,22 +88,29 @@ int	ft_count_size_x(const char *str, char c)
 	return (count);
 }
 
-// void free_tab(int **point, int size)
-// {
-//     int i;
+void	free_tab(int y, int **tab)
+{
+	y--;
+	while (y >= 0)
+	{
+		free(tab[y]);
+		y--;
+	}
+	free(tab);
+}
+void	free_two_d(int y, t_map *map)
+{
+	y--;
+	while (y >= 0)
+	{
+		free(map->two_d_map[y]);
+		y--;
+	}
+	free(map->two_d_map);
+}
 
-//     i = 0;
-//     while (i < map->size_y)
-//     {
-//         free(point[i]);
-//         i++
-//     }
-// }
-
-// void free_map(t_map *map)
-// {
-//     int i;
-//     i = 0;
-//     free_tab(map->z_value, map);
-//     free(map);
-// }
+void	free_map(t_map *map)
+{
+	free_tab(map->size_y, map->z_value);
+	free_two_d(map-> size_y, map);
+}

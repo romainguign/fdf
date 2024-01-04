@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 13:43:47 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/04 12:03:17 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/04 13:04:51 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	bottom_right_diag(t_map *map, t_line point, int dx, int dy)
 	dy = 2 * dy;
 	while (1)
 	{
-		mlx_pixel_put(map->mlx, map->mlx_win, point.x1, point.y1, gradient_color(map, dx, dy, point));
+		mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1, gradient_color(map, dx, dy, point));
 		point.x1 += 1;
 		if (point.x1 == point.x2)
 			break ;
@@ -43,7 +43,7 @@ void	bottom_right_vert(t_map *map, t_line point, int dx, int dy)
 	dy = 2 * n;
 	while (1)
 	{
-		mlx_pixel_put(map->mlx, map->mlx_win, point.x1, point.y1, gradient_color(map, dx, dy, point));
+		mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1, gradient_color(map, dx, dy, point));
 		point.y1 += 1;
 		if (point.y1 == point.y2)
 			break ;
@@ -65,7 +65,7 @@ void	top_right_diag(t_map *map, t_line point, int dx, int dy)
 	dy = 2 * dy;
 	while (1)
 	{
-		mlx_pixel_put(map->mlx, map->mlx_win, point.x1, point.y1, gradient_color(map, dx, dy, point));
+		mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1, gradient_color(map, dx, dy, point));
 		point.x1 += 1;
 		if (point.x1 == point.x2)
 			break ;
@@ -87,7 +87,7 @@ void	top_right_vert(t_map *map, t_line point, int dx, int dy)
 	dy = 2 * n;
 	while (1)
 	{
-		mlx_pixel_put(map->mlx, map->mlx_win, point.x1, point.y1, gradient_color(map, dx, dy, point));
+		mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1, gradient_color(map, dx, dy, point));
 		point.y1 -= 1;
 		if (point.y1 == point.y2)
 			break ;

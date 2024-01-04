@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:36 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/12 15:22:30 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/04 16:52:41 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	get_size_x(char *file_name)
 	return (size_x);
 }
 
-int	*get_line_value(char *buff, int len, int size_x)
+int	*get_line_value(char *buff, int len, int size_x, t_map *map)
 {
 	int	i;
 	int	x;
@@ -68,10 +68,7 @@ int	*get_line_value(char *buff, int len, int size_x)
 	{
 		if (buff[i] != ' ' && buff[i] != '\n' && buff[i])
 		{
-			z_value[x] = read_value(&buff[i]);
-			printf("%d ", z_value[x]);
-			if (z_value[x] < 10)
-				printf(" ");
+			z_value[x] = read_value(&buff[i], map);
 			while (buff[i] != ' ' && buff[i] != '\n' && buff[i])
 				i++;
 			x++;
@@ -81,7 +78,7 @@ int	*get_line_value(char *buff, int len, int size_x)
 	return (z_value);
 }
 
-int	**get_values(char *file_name, int **z_value, int size_x)
+int	**get_values(char *file_name, int **z_value, int size_x, t_map *map)
 {
 	int		y;
 	int		i;
@@ -98,10 +95,9 @@ int	**get_values(char *file_name, int **z_value, int size_x)
 	{
 		if (buffer[i] == '\n')
 		{
-			z_value[y] = get_line_value(buffer + len, i - len, size_x);
+			z_value[y] = get_line_value(buffer + len, i - len, size_x, map);
 			y++;
 			len = i;
-			printf("\n");
 		}
 		i++;		
 	}
@@ -121,8 +117,8 @@ void	read_map(char *file_name, t_map *map)
 	map->z_value = malloc(sizeof(int *) * (map->size_y * map->size_x));
 	if (!map->z_value)
 		free(map->z_value);
-	map->z_value = get_values(file_name, map->z_value, map->size_x);
+	map->z_value = get_values(file_name, map->z_value, map->size_x, map);
 	map->color = malloc(sizeof(int *) * (map->size_y * map->size_x));
 	map->color = get_colors(map, map->color);
-	printf("%x\n", map->color[3][3]);
+
 }

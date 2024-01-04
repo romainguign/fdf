@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:23 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/12 15:36:09 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/04 16:56:09 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 // #include "../mlx/mlx.h"
 #include "mlx.h"
+#include "./fdf.h" // ATTTENTION A SUPP
 #include "libft.h"
 #include <fcntl.h>
 #include <math.h>
@@ -28,6 +29,12 @@
 #  define HEIGHT 720
 # endif
 
+typedef struct s_twoD
+{
+	float	x;
+	float	y;
+} t_twoD;
+
 typedef struct s_map
 {
 	int			size_x;
@@ -36,16 +43,13 @@ typedef struct s_map
 	int			cur_y;
 	int			**color;
 	int 		**z_value;
+	int			height_multiplicator;
+	char		*map_name;
 	void		*mlx;
 	void		*mlx_win;
 	void		*img;
+	t_twoD		**two_d_map;
 } t_map;
-
-typedef struct s_twoD
-{
-	float	x;
-	float	y;
-} t_twoD;
 
 typedef struct s_line
 {
@@ -61,11 +65,11 @@ void 	read_map(char *file_name, t_map *map);
 void 	free_map(t_map *map);
 void 	NewFunction(int **z_value, int y, char *line);
 int 	ft_count_size_x(const char *str, char c);
-int 	read_value(char *line);
+int 	read_value(char *line, t_map *map);
 char    *get_file(char *file);
 
 //////////////////////////////// DRAW /////////////////////////////
-void	aff_window(t_map *map, t_twoD **two_d_map);
+void	aff_window(t_map *map);
 void	draw_line(t_map *map, t_twoD first_point, t_twoD second_point);
 void	bottom_right_diag(t_map *map, t_line point, int dx, int dy);
 void	bottom_right_vert(t_map *map, t_line point, int dx, int dy);

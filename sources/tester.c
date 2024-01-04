@@ -1,5 +1,4 @@
 
-#include "fdf.h"
 
 // void    graphics(t_map *map)
 // {
@@ -39,3 +38,27 @@
 //         second_point.x -= 5;
 //     }
 // }
+
+#include <stdio.h>
+
+#include "fdf.h"
+void print_map(t_map *map)
+{
+	int x;
+	int y;
+	y = 0;
+	while (y < map->size_y)
+	{
+		x = 0;
+		while (x < map->size_x)
+		{
+			if (map->z_value[y][x] > 10)
+				printf("%d ", map->z_value[y][x]);
+			else 
+				printf("%d  ", map->z_value[y][x]);
+			x++;
+		}
+		printf("\n");
+		y++;
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:44 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/12 14:43:40 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/04 16:02:47 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ t_map	*map_init(void)
 	//     terminate();
 	map->size_x = 0;
 	map->size_y = 0;
+	map->height_multiplicator = 6;
 	return (map);
 }

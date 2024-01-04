@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:38 by roguigna          #+#    #+#             */
-/*   Updated: 2023/12/12 14:43:47 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/04 16:03:10 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	is_hexa(char *line, char *base)
 	return (1);
 }
 
-int	read_value(char *line)
+int	read_value(char *line, t_map *map)
 {
 	int	i;
 	int	z_value;
