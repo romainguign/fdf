@@ -61,4 +61,5 @@ void print_map(t_map *map)
 		printf("\n");
 		y++;
 	}
+	printf("\n");
 }

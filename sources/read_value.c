@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:38 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/04 16:03:10 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/06 15:14:21 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ int	read_value(char *line, t_map *map)
 	int	z_value;
 
 	i = 0;
-	z_value = ft_atoi(line) * 6;
+	z_value = ft_atoi(line);
 	return (z_value);
 }

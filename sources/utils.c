@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:33 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/04 17:09:42 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/06 18:19:30 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,31 +86,4 @@ int	ft_count_size_x(const char *str, char c)
 	if (!str[i] && str[i - 1] != c)
 		count++;
 	return (count);
-}
-
-void	free_tab(int y, int **tab)
-{
-	y--;
-	while (y >= 0)
-	{
-		free(tab[y]);
-		y--;
-	}
-	free(tab);
-}
-void	free_two_d(int y, t_map *map)
-{
-	y--;
-	while (y >= 0)
-	{
-		free(map->two_d_map[y]);
-		y--;
-	}
-	free(map->two_d_map);
-}
-
-void	free_map(t_map *map)
-{
-	free_tab(map->size_y, map->z_value);
-	free_two_d(map-> size_y, map);
 }

@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:36 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/04 16:52:41 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/06 14:45:06 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,30 +55,30 @@ int	*get_line_value(char *buff, int len, int size_x, t_map *map)
 {
 	int	i;
 	int	x;
-	int	*z_value;
+	int	*save_zvalue;
 
 	i = 0;
 	x = 0;
-	z_value = malloc(sizeof(int) * size_x);
-	if (!z_value)
+	save_zvalue = malloc(sizeof(int) * size_x);
+	if (!save_zvalue)
 		return (NULL);
-	if (!z_value)
+	if (!save_zvalue)
 		return (0);
 	while (i < len)
 	{
 		if (buff[i] != ' ' && buff[i] != '\n' && buff[i])
 		{
-			z_value[x] = read_value(&buff[i], map);
+			save_zvalue[x] = read_value(&buff[i], map);
 			while (buff[i] != ' ' && buff[i] != '\n' && buff[i])
 				i++;
 			x++;
 		}
 		i++;
 	}
-	return (z_value);
+	return (save_zvalue);
 }
 
-int	**get_values(char *file_name, int **z_value, int size_x, t_map *map)
+int	**get_values(char *file_name, int **save_zvalue, int size_x, t_map *map)
 {
 	int		y;
 	int		i;
@@ -95,16 +95,16 @@ int	**get_values(char *file_name, int **z_value, int size_x, t_map *map)
 	{
 		if (buffer[i] == '\n')
 		{
-			z_value[y] = get_line_value(buffer + len, i - len, size_x, map);
+			save_zvalue[y] = get_line_value(buffer + len, i - len, size_x, map);
 			y++;
 			len = i;
 		}
 		i++;		
 	}
-	if (!z_value[y - 1])
+	if (!save_zvalue[y - 1])
 		return (0);
 	free(buffer);
-	return (z_value);
+	return (save_zvalue);
 }
 
 void	read_map(char *file_name, t_map *map)
@@ -114,11 +114,8 @@ void	read_map(char *file_name, t_map *map)
 
 	printf("%d\n", map->size_y);
 	printf("%d\n", map->size_x);
-	map->z_value = malloc(sizeof(int *) * (map->size_y * map->size_x));
-	if (!map->z_value)
-		free(map->z_value);
-	map->z_value = get_values(file_name, map->z_value, map->size_x, map);
-	map->color = malloc(sizeof(int *) * (map->size_y * map->size_x));
-	map->color = get_colors(map, map->color);
-
+	map->save_zvalue = malloc(sizeof(int *) * (map->size_y * map->size_x));
+	if (!map->save_zvalue)
+		free(map->save_zvalue);
+	map->save_zvalue = get_values(file_name, map->save_zvalue, map->size_x, map);
 }
