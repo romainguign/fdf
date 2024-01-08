@@ -6,7 +6,7 @@
 #    By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/06 12:50:47 by roguigna          #+#    #+#              #
-#    Updated: 2024/01/06 18:32:50 by roguigna         ###   ########.fr        #
+#    Updated: 2024/01/08 16:04:28 by roguigna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ OBJ				= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 all:
 	$(CC) -g $(SRC_FILES) $(LIB) $(MLX_FLAGS) $(INCLUDE) -o $(NAME)
-	./fdf ./maps/42.fdf
+	./fdf ./maps/t2.fdf
 
 ${OBJ_DIR}%.o: ${SRC_DIR}%.c | ${OBJF}
 	@${CC} ${CFLAGS} -c $< -o $@

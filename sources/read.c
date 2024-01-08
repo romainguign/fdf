@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:36 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/06 14:45:06 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:19:15 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	get_size_y(char *file_name)
 	if (!buffer[i] && buffer[i - 1] != '\n' && i != 0)
 		size_y++;
 	free (buffer);
-	return(size_y - 1);
+	return (size_y - 1);
 }
 
 int	get_size_x(char *file_name)
@@ -99,7 +99,7 @@ int	**get_values(char *file_name, int **save_zvalue, int size_x, t_map *map)
 			y++;
 			len = i;
 		}
-		i++;		
+		i++;
 	}
 	if (!save_zvalue[y - 1])
 		return (0);
@@ -111,11 +111,11 @@ void	read_map(char *file_name, t_map *map)
 {
 	map->size_y = get_size_y(file_name);
 	map->size_x = get_size_x(file_name);
-
 	printf("%d\n", map->size_y);
 	printf("%d\n", map->size_x);
 	map->save_zvalue = malloc(sizeof(int *) * (map->size_y * map->size_x));
 	if (!map->save_zvalue)
 		free(map->save_zvalue);
-	map->save_zvalue = get_values(file_name, map->save_zvalue, map->size_x, map);
+	map->save_zvalue = get_values(file_name, map->save_zvalue,
+			map->size_x, map);
 }

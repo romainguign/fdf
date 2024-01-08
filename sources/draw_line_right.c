@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 13:43:47 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/04 13:04:51 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:17:32 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@ void	bottom_right_diag(t_map *map, t_line point, int dx, int dy)
 	dy = 2 * dy;
 	while (1)
 	{
-		mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1, gradient_color(map, dx, dy, point));
+		mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1,
+			gradient_color(map, dx, dy, point));
 		point.x1 += 1;
 		if (point.x1 == point.x2)
 			break ;
 		n = n - dy;
 		if (n < 0)
-		{	
+		{
 			point.y1 += 1;
 			n = n + dx;
 		}
@@ -43,13 +44,14 @@ void	bottom_right_vert(t_map *map, t_line point, int dx, int dy)
 	dy = 2 * n;
 	while (1)
 	{
-		mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1, gradient_color(map, dx, dy, point));
+		mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1,
+			gradient_color(map, dx, dy, point));
 		point.y1 += 1;
 		if (point.y1 == point.y2)
 			break ;
 		n = n - dx;
 		if (n < 0)
-		{	
+		{
 			point.x1 += 1;
 			n = n + dy;
 		}
@@ -65,13 +67,14 @@ void	top_right_diag(t_map *map, t_line point, int dx, int dy)
 	dy = 2 * dy;
 	while (1)
 	{
-		mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1, gradient_color(map, dx, dy, point));
+		mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1,
+			gradient_color(map, dx, dy, point));
 		point.x1 += 1;
 		if (point.x1 == point.x2)
 			break ;
 		n = n + dy;
 		if (n < 0)
-		{	
+		{
 			point.y1 -= 1;
 			n = n + dx;
 		}
@@ -87,13 +90,14 @@ void	top_right_vert(t_map *map, t_line point, int dx, int dy)
 	dy = 2 * n;
 	while (1)
 	{
-		mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1, gradient_color(map, dx, dy, point));
+		mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1,
+			gradient_color(map, dx, dy, point));
 		point.y1 -= 1;
 		if (point.y1 == point.y2)
 			break ;
 		n = n + dx;
 		if (n > 0)
-		{	
+		{
 			point.x1 += 1;
 			n = n + dy;
 		}

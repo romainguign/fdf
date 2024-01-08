@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 18:19:18 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/06 18:34:48 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:00:23 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	free_tab(int y, int **tab)
 	}
 	free(tab);
 }
+
 void	free_two_d(int y, t_map *map)
 {
 	y--;

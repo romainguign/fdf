@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:33 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/06 18:19:30 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/08 15:56:41 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ char	*get_file(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (NULL);
-	buffer = malloc(64 * sizeof(char));
+	buffer = malloc((64 + 1) * sizeof(char));
 	if (buffer == NULL)
 		return (NULL);
 	str = NULL;
 	while (1)
 	{
 		ret = read(fd, buffer, 64);
-		if (ret == 0)
+		if (ret <= 0)
 			break ;
 		buffer[ret] = 0;
 		str = ft_strjoin_get_fil_ver(str, buffer);

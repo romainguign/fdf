@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:23 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/06 19:06:43 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/08 16:56:33 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,34 @@ typedef struct s_twoD
 	float	y;
 } t_twoD;
 
+typedef	struct s_pos
+{
+	int x;
+	int y;
+} t_pos;
+
 typedef struct s_map
 {
 	int			size_x;
 	int			size_y;
 	int			cur_x;
 	int			cur_y;
-	int			**color;
+	int			**color;	
 	int			**save_zvalue;
 	int 		**z_value;
 	int			height_multiplicator;
 	int			zoom;
 	int			y_shift;
 	int			x_shift;
+	int			left_mouse_status;
 	char		*map_name;
 	void		*mlx;
 	void		*mlx_win;
 	void		*img;
+	t_pos		*pos;
 	t_twoD		**two_d_map;
 } t_map;
+
 
 typedef struct s_line
 {
@@ -65,7 +74,7 @@ typedef struct s_line
 } t_line;
 
 t_map *map_init(void);
-
+void	re_init_map(t_map *map);
 void 	read_map(char *file_name, t_map *map);
 void	read_color(t_map *map);
 void 	free_map(t_map *map);
@@ -78,6 +87,8 @@ void	free_two_d(int y, t_map *map);
 
 //////////////////////////////// DRAW /////////////////////////////
 void	aff_window(t_map *map);
+void	draw_top_left_to_bot_right(t_map *map);
+void	draw_bottom_right(t_map *map);
 void	draw_line(t_map *map, t_twoD first_point, t_twoD second_point);
 void	bottom_right_diag(t_map *map, t_line point, int dx, int dy);
 void	bottom_right_vert(t_map *map, t_line point, int dx, int dy);
@@ -89,10 +100,23 @@ void	top_left_diag(t_map *map, t_line point, int dx, int dy);
 void	top_left_vert(t_map *map, t_line point, int dx, int dy);
 
 t_twoD	**make_twod_map(t_map *map, t_twoD **two_d_map);
-
-int	**get_colors(t_map *map, int **color);
-int	gradient_color(t_map *map, int dx, int dy, t_line point);
-void fill_image(t_map *map);
+		
+		               ////////  MODIF  ////////
+int		**get_colors(t_map *map, int **color, int (*f)(int, int, int, t_map *));
+int		key_hook(int key, void *param);
+int		window_hook(int event, void *param);
+int		gradient_color(t_map *map, int dx, int dy, t_line point);
+int		mountain_color(int z_value, int x, int y, t_map *map);
+int 	basics_colors(int z_value, int x, int y, t_map *map);
+int		mouse_status_true(int key, void *param);
+int 	mouse_status_false(int key, void *param);
+int 	zoom_map(int key, void *param);
+void 	shift_map(t_map *map);
+void 	fill_image(t_map *map);
+void	draw_img(t_map *map);
+void 	shift_map(t_map *map);
+void	height_map(int key, t_map *map);
+void	refresh_img(t_map *map);
 
 void	free_all(t_map *map);
 

@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:18:42 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/06 19:10:23 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:11:59 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,34 @@
 
 int	gradient_color(t_map *map, int dx, int dy, t_line point)
 {
-	// if (map < 10)
-		return(0xFF0000FF);
-	
+	return (map->color[map->pos->y][map->pos->x]);
 }
 
-int put_color(int z_value, int x, int y, t_map *map)
+int	basics_colors(int z_value, int x, int y, t_map *map)
 {
-	int color;
+	map->color[y][x] = 0x77FFFFFF;
+}
+
+int	mountain_color(int z_value, int x, int y, t_map *map)
+{
+	int	color;
 
 	if (z_value == 0)
-		map->color[y][x] = 0xFFFFFFFF;
-	else if (abs(z_value) > 0 && abs(z_value) < 5)
+		map->color[y][x] = 0xCC0000FF;
+	else if (abs(z_value) > 0 && abs(z_value) < 3)
 		map->color[y][x] = 0xFFFFF865;
-	else if (abs(z_value) > 5 && abs(z_value) < 15)
+	else if (abs(z_value) < 10)
 		map->color[y][x] = 0xFF6EC15A;
+	else if (abs(z_value) < 100)
+		map->color[y][x] = 0xFF6A6A6A;
 	else
-		map->color[y][x] = 0xFFB4B8B9;
-
-	return(color);
+		map->color[y][x] = 0xFFFFFFFF;
+	return (color);
 }
 
-int	**get_colors(t_map *map, int **color)
+int	**get_colors(t_map *map, int **color, int (*f)(int, int, int, t_map *))
 {
-	int x;
+	int	x;
 	int	y;
 
 	y = 0;
@@ -47,15 +51,16 @@ int	**get_colors(t_map *map, int **color)
 		map->color[y] = malloc(sizeof(int) * map->size_x);
 		while (x < map->size_x)
 		{
-			put_color(map->save_zvalue[y][x], x, y, map);
+			f(map->save_zvalue[y][x], x, y, map);
 			x++;
 		}
 		y++;
 	}
-	return(0);
+	return (0);
 }
+
 void	read_color(t_map *map)
 {
 	map->color = malloc(sizeof(int *) * (map->size_y * map->size_x));
-	get_colors(map, map->color);
+	get_colors(map, map->color, basics_colors);
 }

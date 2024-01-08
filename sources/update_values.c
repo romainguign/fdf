@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   update_values.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/08 17:11:30 by roguigna          #+#    #+#             */
+/*   Updated: 2024/01/08 17:13:27 by roguigna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 #include <stdio.h>
 
-void fill_image(t_map *map)
+void	fill_image(t_map *map)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = 0;
 	while (y < HEIGHT)
@@ -36,10 +48,11 @@ void	copy_map_values(t_map *map)
 			return ;
 		while (x < map->size_x)
 		{
-			map->z_value[y][x] = map->save_zvalue[y][x] * map->height_multiplicator;
+			map->z_value[y][x] = map->save_zvalue[y][x]
+				* map->height_multiplicator;
 			x++;
 		}
 		y++;
 	}
-	printf("\n%d\n",map->save_zvalue[3][3]);
+	printf ("\n%d\n", map->save_zvalue[3][3]);
 }
