@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:05:52 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/10 16:11:49 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:37:24 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,18 @@ int	update(void *param)
 	t_map	*map;
 
 	map = (t_map *)param;
+	static int i;
+	if (!i)
+		i = 0;
 	if (map->left_mouse_status == 1)
 		shift_map(map);
+	if (map->choosen_color == 2 && i > 1500)
+	{
+		i = 0;
+		get_colors(map, map->color, rainbow_color);
+		refresh_img(map);
+	}
+	i++;
 	return (0);
 }
 

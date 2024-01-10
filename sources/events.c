@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 16:41:52 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/08 17:06:20 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:24:10 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,14 @@
 
 void	change_color(t_map *map)
 {
-	static int	color;
-
-	if (color == 0)
-	{
-		color = 1;
+	map->choosen_color++;
+	if (map->choosen_color == 1)
 		get_colors(map, map->color, mountain_color);
-		color++;
-	}
+	else if (map->choosen_color == 2)
+		get_colors(map, map->color, rainbow_color);
 	else
 	{
-		color = 0;
+		map->choosen_color = 0;
 		get_colors(map, map->color, basics_colors);
 	}
 }

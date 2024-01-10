@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:23 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/10 16:02:53 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:22:58 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_map
 	int			zoom;
 	int			y_shift;
 	int			x_shift;
+	int			choosen_color;
 	int			left_mouse_status;
 	char		*map_name;
 	void		*mlx;
@@ -108,6 +109,7 @@ int		window_hook(int event, void *param);
 int		gradient_color(t_map *map, int dx, int dy, t_line point);
 int		mountain_color(int z_value, int x, int y, t_map *map);
 int 	basics_colors(int z_value, int x, int y, t_map *map);
+int 	rainbow_color(int z_value, int x, int y, t_map *map);
 int		mouse_status_true(int key, void *param);
 int 	mouse_status_false(int key, void *param);
 int 	zoom_map(int key, void *param);

@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:44 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/08 18:10:28 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:24:28 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_map	*map_init(void)
 	map->size_y = 0;
 	map->cur_x = 0;
 	map->cur_y = 0;
+	map->choosen_color = 0;
 	re_init_map(map);
 	return (map);
 }
