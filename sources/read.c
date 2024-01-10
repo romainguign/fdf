@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:36 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/09 12:54:38 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:02:23 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,16 @@ int	get_size_x(char *file_name)
 
 	fd = open(file_name, O_RDONLY);
 	line = get_next_line(fd);
+	if (!line)
+		return (0);
 	size_x = ft_count_size_x(line, ' ');
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
+		if (line && size_x != ft_count_size_x(line, ' '))
+			return (0);
+	}
 	free(line);
 	close(fd);
 	return (size_x);
@@ -107,7 +116,7 @@ int	**get_values(char *file_name, int **save_zvalue, int size_x, t_map *map)
 	return (save_zvalue);
 }
 
-void	read_map(char *file_name, t_map *map)
+int read_map(char *file_name, t_map *map)
 {
 	map->size_y = get_size_y(file_name);
 	map->size_x = get_size_x(file_name);
@@ -115,7 +124,11 @@ void	read_map(char *file_name, t_map *map)
 	printf("%d\n", map->size_x);
 	map->save_zvalue = malloc(sizeof(int *) * (map->size_y * map->size_x));
 	if (!map->save_zvalue)
+	{
 		free(map->save_zvalue);
+		return 0;
+	}
 	map->save_zvalue = get_values(file_name, map->save_zvalue,
 			map->size_x, map);
+	return (1);
 }

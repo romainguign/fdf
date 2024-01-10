@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:23 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/09 13:15:04 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:02:53 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct s_line
 
 t_map *map_init(void);
 void	re_init_map(t_map *map);
-void 	read_map(char *file_name, t_map *map);
+int 	read_map(char *file_name, t_map *map);
 void	read_color(t_map *map);
 void 	free_map(t_map *map);
 void	copy_map_values(t_map *map);
