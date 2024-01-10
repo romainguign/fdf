@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:18:42 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/08 17:11:59 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/09 12:24:26 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 int	gradient_color(t_map *map, int dx, int dy, t_line point)
 {
 	return (map->color[map->pos->y][map->pos->x]);
+	return (0);
+
 }
 
 int	basics_colors(int z_value, int x, int y, t_map *map)
 {
 	map->color[y][x] = 0x77FFFFFF;
+	return (0);
 }
 
 int	mountain_color(int z_value, int x, int y, t_map *map)

@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:05:52 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/08 17:02:08 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/08 18:07:52 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	update(void *param)
 void	aff_window(t_map *map)
 {
 	map->pos = malloc(sizeof(t_pos));
+	map->pos->x = 0;
+	map->pos->y = 0;
 	map->mlx = mlx_init();
 	map->mlx_win = mlx_new_window(map->mlx, WIDTH, HEIGHT, "Fdf");
 	mlx_on_event(map->mlx, map->mlx_win, MLX_KEYDOWN, key_hook, map);

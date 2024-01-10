@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 16:50:30 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/08 17:26:22 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/09 13:13:08 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	draw_bottom_right(t_map *map)
 	x = 0;
 	map->cur_y = map->size_y - 1;
 	map->pos->y = map->cur_y;
+	y = map->size_y - 1;
 	while (x < map->size_x - 1)
 	{
 		map->cur_x = x;
@@ -50,9 +51,9 @@ void	draw_bottom_right(t_map *map)
 		draw_line(map, map->two_d_map[y][x], map->two_d_map[y][x + 1]);
 		x++;
 	}
-	y = 0;
 	map->cur_x = map->size_x - 1;
 	map->pos->x = map->cur_x;
+	y = 0;
 	while (y < map->size_y - 1)
 	{
 		map->cur_y = y;
@@ -61,4 +62,3 @@ void	draw_bottom_right(t_map *map)
 		y++;
 	}
 }
-	

@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:36 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/08 17:19:15 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/09 12:54:38 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	get_size_y(char *file_name)
 	if (!buffer[i] && buffer[i - 1] != '\n' && i != 0)
 		size_y++;
 	free (buffer);
-	return (size_y - 1);
+	return (size_y );
 }
 
 int	get_size_x(char *file_name)

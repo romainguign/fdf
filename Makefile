@@ -6,7 +6,7 @@
 #    By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/06 12:50:47 by roguigna          #+#    #+#              #
-#    Updated: 2024/01/08 16:04:28 by roguigna         ###   ########.fr        #
+#    Updated: 2024/01/09 12:45:12 by roguigna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME			= fdf
 
 LIBMLX_DIR 		= MacroLibX
 
-CC				= clang
+CC				= cc
 
 FLAGS 			= -Wall -Wextra - Werror
 
@@ -38,7 +38,7 @@ OBJ				= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 all:
 	$(CC) -g $(SRC_FILES) $(LIB) $(MLX_FLAGS) $(INCLUDE) -o $(NAME)
-	./fdf ./maps/t2.fdf
+	./fdf ./maps/42.fdf
 
 ${OBJ_DIR}%.o: ${SRC_DIR}%.c | ${OBJF}
 	@${CC} ${CFLAGS} -c $< -o $@

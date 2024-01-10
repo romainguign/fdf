@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:23 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/08 16:56:33 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/09 13:15:04 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	free_two_d(int y, t_map *map);
 //////////////////////////////// DRAW /////////////////////////////
 void	aff_window(t_map *map);
 void	draw_top_left_to_bot_right(t_map *map);
-void	draw_bottom_right(t_map *map);
+void	draw_bottom_right(t_map *map);	
 void	draw_line(t_map *map, t_twoD first_point, t_twoD second_point);
 void	bottom_right_diag(t_map *map, t_line point, int dx, int dy);
 void	bottom_right_vert(t_map *map, t_line point, int dx, int dy);
