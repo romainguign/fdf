@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:24:32 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/08 17:09:29 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/11 13:30:25 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ void	right_line(t_map *map, t_line point, int dx)
 	}
 	while (point.x1 != point.x2)
 	{
-		mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1,
-			gradient_color(map, dx, dy, point));
+		if (point.x1 < WIDTH && point.y1 < HEIGHT)
+			mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1,
+				gradient_color(map, dx, dy, point));
 		point.x1++;
 	}
 }
@@ -64,8 +65,9 @@ void	left_line(t_map *map, t_line point, int dx)
 	}
 	while (point.x1 != point.x2)
 	{
-		mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1,
-			gradient_color(map, dx, dy, point));
+		if (point.x1 < WIDTH && point.y1 < HEIGHT)
+			mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1,
+				gradient_color(map, dx, dy, point));
 		point.x1--;
 	}
 }
@@ -81,8 +83,9 @@ void	vertical_line(t_map *map, t_line point)
 		direction = -1;
 	while (point.y1 != point.y2)
 	{
-		mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1,
-			gradient_color(map, point.x1, dy, point));
+		if (point.x1 < WIDTH && point.y1 < HEIGHT)
+			mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1,
+				gradient_color(map, point.x1, dy, point));
 		point.y1 += direction;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:36 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/10 16:02:23 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/11 14:18:05 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,11 @@ int read_map(char *file_name, t_map *map)
 {
 	map->size_y = get_size_y(file_name);
 	map->size_x = get_size_x(file_name);
-	printf("%d\n", map->size_y);
-	printf("%d\n", map->size_x);
+	if (map->size_y == 0 || map->size_x == 0)
+	{
+		free(map);
+		return(0);
+	}
 	map->save_zvalue = malloc(sizeof(int *) * (map->size_y * map->size_x));
 	if (!map->save_zvalue)
 	{

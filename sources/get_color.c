@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:18:42 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/10 17:42:19 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/11 14:08:33 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 int	gradient_color(t_map *map, int dx, int dy, t_line point)
 {
 	return (map->color[map->pos->y][map->pos->x]);
-	return (0);
-
 }
 
 int	basics_colors(int z_value, int x, int y, t_map *map)
@@ -49,7 +47,7 @@ int rainbow_color(int z_value, int x, int y, t_map *map)
 		color = 0xFF0000FF;
 	map->color[y][x] = color;
 	if (x == map->size_x - 1)
-		color += 10000;
+		color += 25000;
 	return (0);
 }
 
