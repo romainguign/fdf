@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:18:42 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/11 14:08:33 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/12 13:17:58 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int rainbow_color(int z_value, int x, int y, t_map *map)
 	static long int color;
 	
 	if (!color || color > 0xFFFFFFFF)
-		color = 0xFF0000FF;
+		color = 0xFF000000;
 	map->color[y][x] = color;
 	if (x == map->size_x - 1)
 		color += 25000;

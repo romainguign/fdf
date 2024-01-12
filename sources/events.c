@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 16:41:52 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/10 17:24:10 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/01/12 13:26:46 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ int	window_hook(int event, void *param)
 {
 	if (event == 0)
 		mlx_loop_end(((t_map *)param)->mlx);
+	printf("%d\n", event);
 	return (0);
 }

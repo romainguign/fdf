@@ -48,4 +48,4 @@ $(OBJF):
 	
 re:
 	clang -g ./sources/* -L libft -lft -L MacroLibX -lm -lmlx -lSDL2 -Wl,-rpath,$(LIBMLX_DIR) -I MacroLibX/includes -I libft/includes -I includes
-	./a.out ./maps/test.fdf
+	./a.out ./maps/test.fdf	
