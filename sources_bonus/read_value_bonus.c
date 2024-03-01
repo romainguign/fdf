@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   read_value_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 16:41:52 by roguigna          #+#    #+#             */
-/*   Updated: 2024/02/29 15:18:04 by roguigna         ###   ########.fr       */
+/*   Created: 2023/12/06 12:50:38 by roguigna          #+#    #+#             */
+/*   Updated: 2024/03/01 13:25:56 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
-int	key_hook(int key, void *param)
+int	read_value(char *line)
 {
-	t_map	*map;
+	int	i;
+	int	z_value;
 
-	map = (t_map *)param;
-
-	if (key == 41)
-		mlx_loop_end (map->mlx);
-	return (0);
-}
-
-int	window_hook(int event, void *param)
-{
-	if (event == 0)
-		mlx_loop_end(((t_map *)param)->mlx);
-	return (0);
+	i = 0;
+	z_value = ft_atoi(line);
+	return (z_value);
 }

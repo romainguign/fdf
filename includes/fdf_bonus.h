@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fdf_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:23 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/01 14:14:11 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/01 14:41:42 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-#define FDF_H
+#ifndef FDF_BONUS_H
+#define FDF_BONUS_H
 
-
-
+// #include "../mlx/mlx.h"
 #include "mlx.h"
-#include "./fdf.h" 
+#include "./fdf_bonus.h" // ATTTENTION A SUPP
 #include "libft.h"
 #include <fcntl.h>
 #include <stdlib.h> 
+#include <stdio.h>
 #include <math.h>
 
 
 # ifndef WIDTH
-#  define WIDTH 1150
+#  define WIDTH 1080
 # endif
 
 # ifndef HEIGHT 
@@ -43,6 +43,13 @@ typedef	struct s_pos
 	int y;
 } t_pos;
 
+typedef struct	s_save_map
+{
+	int	x;
+	int	y;
+	int	z;
+} t_save_map;
+
 typedef struct s_map
 {
 	int			size_x;
@@ -50,12 +57,13 @@ typedef struct s_map
 	int			cur_x;
 	int			cur_y;
 	int			**color;	
-	int			**save_zvalue;
 	int 		**z_value;
+	int			iso;
 	int			height_multiplicator;
 	int			zoom;
 	int			y_shift;
 	int			x_shift;
+	int			choosen_color;
 	int			left_mouse_status;
 	char		*map_name;
 	void		*mlx;
@@ -63,8 +71,8 @@ typedef struct s_map
 	void		*img;
 	t_pos		*pos;
 	t_twoD		**two_d_map;
+	t_save_map	**save;
 } t_map;
-
 
 typedef struct s_line
 {
@@ -74,9 +82,6 @@ typedef struct s_line
 	int x2;
 } t_line;
 
-////////////////////////////SUPPPRINE
-void print_map(t_map *map);
-
 t_map *map_init(void);
 void	re_init_map(t_map *map);
 int 	read_map(char *file_name, t_map *map);
@@ -85,7 +90,7 @@ void 	free_map(t_map *map);
 void	copy_map_values(t_map *map);
 void 	NewFunction(int **z_value, int y, char *line);
 int 	ft_count_size_x(const char *str, char c);
-int 	read_value(char *line, t_map *map);
+int 	read_value(char *line);
 char    *get_file(char *file);
 void	free_two_d(int y, t_map *map);
 
@@ -103,8 +108,11 @@ void	bottom_letf_vert(t_map *map, t_line point, int dx, int dy);
 void	top_left_diag(t_map *map, t_line point, int dx, int dy);
 void	top_left_vert(t_map *map, t_line point, int dx, int dy);
 
-t_twoD	**make_twod_map(t_map *map, t_twoD **two_d_map);
-		
+t_twoD	**make_twod_map(t_map *map, t_twoD **two_d_map, t_twoD (*f)(t_map *, int, int, t_twoD));
+t_twoD	to_two_d(t_map *map, int x, int y, t_twoD tab);
+t_twoD	rotation(t_map *map, int x, int y, t_twoD tab);
+
+
 		               ////////  MODIF  ////////
 int		**get_colors(t_map *map, int **color, int (*f)(int, int, int, t_map *));
 int		key_hook(int key, void *param);
@@ -112,6 +120,7 @@ int		window_hook(int event, void *param);
 int		gradient_color(t_map *map, int dx, int dy, t_line point);
 int		mountain_color(int z_value, int x, int y, t_map *map);
 int 	basics_colors(int z_value, int x, int y, t_map *map);
+int 	rainbow_color(int z_value, int x, int y, t_map *map);
 int		mouse_status_true(int key, void *param);
 int 	mouse_status_false(int key, void *param);
 int 	zoom_map(int key, void *param);
@@ -124,5 +133,6 @@ void	refresh_img(t_map *map);
 
 void	free_all(t_map *map);
 
+void print_map(t_map *map);	
 
 #endif

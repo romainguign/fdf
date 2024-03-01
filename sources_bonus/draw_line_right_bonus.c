@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_line_right.c                                  :+:      :+:    :+:   */
+/*   draw_line_right_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 13:43:47 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/01 13:03:29 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:25:26 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 void	bottom_right_diag(t_map *map, t_line point, int dx, int dy)
 {

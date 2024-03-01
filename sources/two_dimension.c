@@ -6,12 +6,11 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:47:36 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/12 13:15:42 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:01:04 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 t_twoD	to_two_d(t_map *map, int x, int y, t_twoD tab)
 {
@@ -20,8 +19,8 @@ t_twoD	to_two_d(t_map *map, int x, int y, t_twoD tab)
 	int	x_aff;
 	int	y_aff;
 
-	sizing_x = 900 / (map->size_x + 10) + map->zoom;
-	sizing_y = 900 / (map->size_y + 10) + map->zoom;
+	sizing_x = WIDTH / (map->size_x + 18) + map->zoom;
+	sizing_y = HEIGHT / (map->size_y + 3) + map->zoom;
 	if (sizing_x <= 0)
 		sizing_x = 0;
 	if (sizing_y <= 0)

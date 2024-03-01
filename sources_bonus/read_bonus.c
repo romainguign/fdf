@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read.c                                             :+:      :+:    :+:   */
+/*   read_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:36 by roguigna          #+#    #+#             */
-/*   Updated: 2024/02/29 17:04:03 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:25:53 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 int	get_size_y(char *file_name)
 {
@@ -46,40 +46,46 @@ int	get_size_x(char *file_name)
 	if (!line)
 		return (0);
 	size_x = ft_count_size_x(line, ' ');
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
+		if (line && size_x != ft_count_size_x(line, ' '))
+			return (0);
+	}
 	free(line);
 	close(fd);
-	get_next_line(-1);
 	return (size_x);
 }
 
-int	*get_line_value(char *buff, int len, int size_x, t_map *map)
+t_save_map	*get_line_value(char *buff, int len, int size_x, t_save_map **save, int y)
 {
 	int	i;
 	int	x;
-	int	*save_zvalue;
 
 	i = 0;
 	x = 0;
-	save_zvalue = malloc(sizeof(int) * size_x);
-	if (!save_zvalue)
+	save[y]= malloc(sizeof(t_save_map) * size_x);
+	if (!save[y])
 		return (NULL);
-	if (!save_zvalue)
-		return (0);
 	while (i < len)
 	{
 		if (buff[i] != ' ' && buff[i] != '\n' && buff[i])
 		{
-			save_zvalue[x] = read_value(&buff[i], map);
+			save[y][x].x = x;
+			save[y][x].y = y;
+			save[y][x].z = read_value(&buff[i]);
 			while (buff[i] != ' ' && buff[i] != '\n' && buff[i])
 				i++;
 			x++;
+			printf("%d ", save[y][x].z);
 		}
 		i++;
 	}
-	return (save_zvalue);
+	return (save[y]);
 }
 
-int	**get_values(char *file_name, int **save_zvalue, int size_x, t_map *map)
+t_save_map	**get_values(char *file_name, t_save_map **save, int size_x, t_map *map)
 {
 	int		y;
 	int		i;
@@ -96,30 +102,35 @@ int	**get_values(char *file_name, int **save_zvalue, int size_x, t_map *map)
 	{
 		if (buffer[i] == '\n')
 		{
-			save_zvalue[y] = get_line_value(buffer + len, i - len, size_x, map);
+			save[y] = get_line_value(buffer + len, i - len, size_x, save, y);
 			y++;
 			len = i;
+		printf("\n");
 		}
 		i++;
 	}
-	if (!save_zvalue[y - 1])
+	if (!save[y - 1])
 		return (0);
 	free(buffer);
-	return (save_zvalue);
+	return (save);
 }
 
-int	read_map(char *file_name, t_map *map)
+int read_map(char *file_name, t_map *map)
 {
 	map->size_y = get_size_y(file_name);
 	map->size_x = get_size_x(file_name);
-	if (map->size_x == 0 || map->size_y == 0)
-		return (0);
-	map->save_zvalue = malloc(sizeof(int *) * (map->size_y * map->size_x));
-	if (!map->save_zvalue)
-		return (0);
-	map->save_zvalue = get_values(file_name, map->save_zvalue,
+	if (map->size_y == 0 || map->size_x == 0)
+	{
+		free(map);
+		return(0);
+	}
+	map->save = malloc(sizeof(t_save_map *) * (map->size_y * map->size_x));
+	if (!map->save)
+	{
+		free(map->save);
+		return 0;
+	}
+	map->save = get_values(file_name, map->save,
 			map->size_x, map);
-	if (!map->save_zvalue)
-		return (0);
 	return (1);
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update_values.c                                    :+:      :+:    :+:   */
+/*   update_values_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:11:30 by roguigna          #+#    #+#             */
-/*   Updated: 2024/02/29 15:16:31 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:26:08 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 void	fill_image(t_map *map)
 {
@@ -47,7 +47,7 @@ void	copy_map_values(t_map *map)
 			return ;
 		while (x < map->size_x)
 		{
-			map->z_value[y][x] = map->save_zvalue[y][x]
+			map->z_value[y][x] = map->save[y][x].z
 				* map->height_multiplicator;
 			x++;
 		}

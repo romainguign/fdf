@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_line_right.c                                  :+:      :+:    :+:   */
+/*   draw_line_left_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 13:43:47 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/01 13:03:29 by roguigna         ###   ########.fr       */
+/*   Created: 2023/12/07 15:03:49 by roguigna          #+#    #+#             */
+/*   Updated: 2024/03/01 13:25:22 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
-void	bottom_right_diag(t_map *map, t_line point, int dx, int dy)
+void	bottom_letf_diag(t_map *map, t_line point, int dx, int dy)
 {
 	int	n;
 
@@ -23,12 +23,12 @@ void	bottom_right_diag(t_map *map, t_line point, int dx, int dy)
 	{
 		if (point.x1 < WIDTH && point.y1 < HEIGHT)
 			mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1,
-				gradient_color(map, dx, dy, point));
-		point.x1 += 1;
+				gradient_color(map, dx, dy, point));	
+		point.x1 -= 1;
 		if (point.x1 == point.x2)
 			break ;
-		n = n - dy;
-		if (n < 0)
+		n = n + dy;
+		if (n >= 0)
 		{
 			point.y1 += 1;
 			n = n + dx;
@@ -36,7 +36,7 @@ void	bottom_right_diag(t_map *map, t_line point, int dx, int dy)
 	}
 }
 
-void	bottom_right_vert(t_map *map, t_line point, int dx, int dy)
+void	bottom_letf_vert(t_map *map, t_line point, int dx, int dy)
 {
 	int	n;
 
@@ -51,16 +51,16 @@ void	bottom_right_vert(t_map *map, t_line point, int dx, int dy)
 		point.y1 += 1;
 		if (point.y1 == point.y2)
 			break ;
-		n = n - dx;
-		if (n < 0)
+		n = n + dx;
+		if (n <= 0)
 		{
-			point.x1 += 1;
+			point.x1 -= 1;
 			n = n + dy;
 		}
 	}
 }
 
-void	top_right_diag(t_map *map, t_line point, int dx, int dy)
+void	top_left_diag(t_map *map, t_line point, int dx, int dy)
 {
 	int	n;
 
@@ -72,11 +72,11 @@ void	top_right_diag(t_map *map, t_line point, int dx, int dy)
 		if (point.x1 < WIDTH && point.y1 < HEIGHT)
 			mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1,
 				gradient_color(map, dx, dy, point));
-		point.x1 += 1;
+		point.x1 -= 1;
 		if (point.x1 == point.x2)
 			break ;
-		n = n + dy;
-		if (n < 0)
+		n = n - dy;
+		if (n >= 0)
 		{
 			point.y1 -= 1;
 			n = n + dx;
@@ -84,7 +84,7 @@ void	top_right_diag(t_map *map, t_line point, int dx, int dy)
 	}
 }
 
-void	top_right_vert(t_map *map, t_line point, int dx, int dy)
+void	top_left_vert(t_map *map, t_line point, int dx, int dy)
 {
 	int	n;
 
@@ -99,10 +99,10 @@ void	top_right_vert(t_map *map, t_line point, int dx, int dy)
 		point.y1 -= 1;
 		if (point.y1 == point.y2)
 			break ;
-		n = n + dx;
-		if (n > 0)
+		n = n - dx;
+		if (n >= 0)
 		{
-			point.x1 += 1;
+			point.x1 -= 1;
 			n = n + dy;
 		}
 	}

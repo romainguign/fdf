@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_map.c                                         :+:      :+:    :+:   */
+/*   free_map_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 18:19:18 by roguigna          #+#    #+#             */
-/*   Updated: 2024/02/29 17:06:04 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:25:40 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 void	free_tab(int y, int **tab)
 {
@@ -41,16 +41,10 @@ void	free_map(t_map *map)
 
 void	free_all(t_map *map)
 {
-	if (map->two_d_map)
-		free_two_d(map->size_y, map);
-	if (map->color)
-		free_tab(map->size_y, map->color);
-	if (map->save_zvalue)
-		free_tab(map->size_y, map->save_zvalue);
-	if (map->z_value)
-		free_tab(map->size_y, map->z_value);
-	if (map->map_name)
-		free(map->map_name);
-	if (map)
-		free(map);
+	free_two_d(map->size_y, map);
+	free_tab(map->size_y, map->color);
+	// free_tab(map->size_y, map->save->z);
+	free_tab(map->size_y, map->z_value);
+	free(map->map_name);
+	free(map);
 }

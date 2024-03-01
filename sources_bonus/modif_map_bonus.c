@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   modif_map.c                                        :+:      :+:    :+:   */
+/*   modif_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 16:36:35 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/10 17:37:07 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:25:48 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 int	mouse_status_true(int key, void *param)
 {
@@ -96,7 +96,7 @@ void	height_map(int key, t_map *map)
 		x = 0;
 		while (x < map->size_x)
 		{
-			map->z_value[y][x] = map->save_zvalue[y][x]
+			map->z_value[y][x] = map->save[y][x].z
 				* map->height_multiplicator;
 			x++;
 		}

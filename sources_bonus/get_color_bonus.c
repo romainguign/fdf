@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_color.c                                        :+:      :+:    :+:   */
+/*   get_color_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:18:42 by roguigna          #+#    #+#             */
-/*   Updated: 2024/02/29 15:19:49 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:25:43 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 int	gradient_color(t_map *map, int dx, int dy, t_line point)
 {
@@ -20,6 +20,34 @@ int	gradient_color(t_map *map, int dx, int dy, t_line point)
 int	basics_colors(int z_value, int x, int y, t_map *map)
 {
 	map->color[y][x] = 0x77FFFFFF;
+	return (0);
+}
+
+int	mountain_color(int z_value, int x, int y, t_map *map)
+{
+	int	color;
+
+	if (z_value == 0)
+		map->color[y][x] = 0xCC0000FF;
+	else if (abs(z_value) > 0 && abs(z_value) < 3)
+		map->color[y][x] = 0xFFFFF865;
+	else if (abs(z_value) < 10)
+		map->color[y][x] = 0xFF6EC15A;
+	else if (abs(z_value) < 100)
+		map->color[y][x] = 0xFF6A6A6A;
+	else
+		map->color[y][x] = 0xFFFFFFFF;
+	return (color);
+}
+int rainbow_color(int z_value, int x, int y, t_map *map)
+{
+	static long int color;
+	
+	if (!color || color > 0xFFFFFFFF)
+		color = 0xFF000000;
+	map->color[y][x] = color;
+	if (x == map->size_x - 1)
+		color += 25000;
 	return (0);
 }
 
@@ -35,7 +63,7 @@ int	**get_colors(t_map *map, int **color, int (*f)(int, int, int, t_map *))
 		map->color[y] = malloc(sizeof(int) * map->size_x);
 		while (x < map->size_x)
 		{
-			f(map->save_zvalue[y][x], x, y, map);
+			f(map->save[y][x].z, x, y, map);
 			x++;
 		}
 		y++;
