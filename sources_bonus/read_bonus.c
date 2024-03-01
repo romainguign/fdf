@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:36 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/01 15:08:35 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/01 16:37:28 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int read_map(char *file_name, t_map *map)
 		free(map);
 		return(0);
 	}
-	map->save = malloc(sizeof(t_save_map *) * (map->size_y * map->size_x));
+	map->save = ft_calloc(sizeof(t_save_map *), (map->size_y * map->size_x));
 	if (!map->save)
 	{
 		free_all(map);

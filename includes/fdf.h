@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:23 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/01 14:14:11 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/01 15:54:50 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ void print_map(t_map *map);
 t_map *map_init(void);
 void	re_init_map(t_map *map);
 int 	read_map(char *file_name, t_map *map);
-void	read_color(t_map *map);
+int	read_color(t_map *map);
 void 	free_map(t_map *map);
-void	copy_map_values(t_map *map);
+int	copy_map_values(t_map *map);
 void 	NewFunction(int **z_value, int y, char *line);
 int 	ft_count_size_x(const char *str, char c);
 int 	read_value(char *line, t_map *map);
@@ -106,7 +106,7 @@ void	top_left_vert(t_map *map, t_line point, int dx, int dy);
 t_twoD	**make_twod_map(t_map *map, t_twoD **two_d_map);
 		
 		               ////////  MODIF  ////////
-int		**get_colors(t_map *map, int **color, int (*f)(int, int, int, t_map *));
+int		get_colors(t_map *map, int **color, int (*f)(int, int, int, t_map *));
 int		key_hook(int key, void *param);
 int		window_hook(int event, void *param);
 int		gradient_color(t_map *map, int dx, int dy, t_line point);

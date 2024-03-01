@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:05:52 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/01 13:24:38 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/01 17:45:06 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,8 @@ void	refresh_img(t_map *map)
 
 void	draw_img(t_map *map)
 {
-	int	x;
-	int	y;
-
 	free_two_d(map->size_y, map);
-	if (map->iso == 1)
-		map->two_d_map = make_twod_map(map, map->two_d_map, to_two_d);
-	else 
-		map->two_d_map = make_twod_map(map, map->two_d_map, rotation);
+	map->two_d_map = make_twod_map(map, map->two_d_map);
 	draw_top_left_to_bot_right(map);
 	draw_bottom_right(map);
 }
@@ -56,6 +50,9 @@ int	update(void *param)
 void	aff_window(t_map *map)
 {
 	map->pos = malloc(sizeof(t_pos));
+	if (!map->pos)
+		return ;
+	print_map(map);
 	map->pos->x = 0;
 	map->pos->y = 0;
 	map->mlx = mlx_init();

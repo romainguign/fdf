@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:23 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/01 15:32:56 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/01 17:08:50 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ typedef struct s_map
 	int			cur_y;
 	int			**color;	
 	int 		**z_value;
-	int			iso;
 	int			height_multiplicator;
 	int			zoom;
 	int			y_shift;
@@ -86,8 +85,8 @@ t_map *map_init(void);
 void	re_init_map(t_map *map);
 int 	read_map(char *file_name, t_map *map);
 int		read_color(t_map *map);
+int		copy_map_values(t_map *map);
 void 	free_map(t_map *map);
-void	copy_map_values(t_map *map);
 void 	NewFunction(int **z_value, int y, char *line);
 int 	ft_count_size_x(const char *str, char c);
 int 	read_value(char *line);
@@ -108,13 +107,13 @@ void	bottom_letf_vert(t_map *map, t_line point, int dx, int dy);
 void	top_left_diag(t_map *map, t_line point, int dx, int dy);
 void	top_left_vert(t_map *map, t_line point, int dx, int dy);
 
-t_twoD	**make_twod_map(t_map *map, t_twoD **two_d_map, t_twoD (*f)(t_map *, int, int, t_twoD));
+t_twoD	**make_twod_map(t_map *map, t_twoD **two_d_map);
 t_twoD	to_two_d(t_map *map, int x, int y, t_twoD tab);
 t_twoD	rotation(t_map *map, int x, int y, t_twoD tab);
 
 
 		               ////////  MODIF  ////////
-int		**get_colors(t_map *map, int **color, int (*f)(int, int, int, t_map *));
+int		get_colors(t_map *map, int **color, int (*f)(int, int, int, t_map *));
 int		key_hook(int key, void *param);
 int		window_hook(int event, void *param);
 int		gradient_color(t_map *map, int dx, int dy, t_line point);

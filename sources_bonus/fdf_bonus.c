@@ -6,12 +6,29 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:41 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/01 15:32:35 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:05:22 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 
+int	map_infos(t_map *map, char **argv)
+{
+	
+	map->map_name = ft_strdup(argv[1]);
+	if (!map->map_name)
+		return (0);
+	if (!read_map(map->map_name, map))
+		return (0);
+	if (!copy_map_values(map))
+		return (0);
+	map->two_d_map = make_twod_map(map, map->two_d_map);
+	if (!map->two_d_map)
+		return (0);
+	if (!read_color(map))
+		return (0);
+	return (1);
+}
 int	main(int argc, char **argv)
 {
 	t_map		*map;
@@ -19,27 +36,16 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (0);
 	map = map_init();
-	map->map_name = ft_strdup(argv[1]);
-	if (!read_map(map->map_name, map))
+	if (!map_infos(map, argv))
 	{
-		ft_printf("File error !\n");
+		free_all(map);
+		ft_putstr_fd("Parsing error !\n", 2);
 		return (1);
 	}
-	print_map(map);
-	copy_map_values(map);
-	map->two_d_map = make_twod_map(map, map->two_d_map, to_two_d);
-	if (!map->two_d_map)
-	{
-		ft_printf("Malloc error");
-		return (1);
-	}
-	if (!read_color(map))
-	{
-		ft_printf("Color error");
-		return (1);
-	}
-	aff_window(map);
-	free_all(map);
+	printf("%d",map->save[3][4].z);	 fflush(stdout);
+	// print_map(map);
+	// aff_window(map);
+	// free_all(map);
 	return (0);
 }
  

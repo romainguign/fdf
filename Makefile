@@ -6,7 +6,7 @@
 #    By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/06 12:50:47 by roguigna          #+#    #+#              #
-#    Updated: 2024/03/01 15:05:42 by roguigna         ###   ########.fr        #
+#    Updated: 2024/03/01 16:46:06 by roguigna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ OBJ_BONUS		= $(addprefix $(OBJ_BONUS_DIR)/, $(SRC_BONUS_FILES:.c=.o))
 all: $(NAME) ascii
 
 $(NAME): $(MacroLibX) $(LIBFT) $(OBJ) 
-	$(CC) -g $(OBJ) $(LIB) $(MLX_FLAGS) $(INCLUDE) -o $(NAME) 
+	@$(CC) -g $(OBJ) $(LIB) $(MLX_FLAGS) $(INCLUDE) -o $(NAME) 
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
@@ -89,7 +89,7 @@ $(LIBFT):
 bonus: $(NAME_BONUS) ascii
 
 $(NAME_BONUS): $(MacroLibX) $(LIBFT) $(OBJ_BONUS) 
-	$(CC) -g3 $(OBJ_BONUS) $(LIB) $(MLX_FLAGS) $(INCLUDE_BONUS) -o $(NAME_BONUS) 
+	@$(CC) -g3 $(OBJ_BONUS) $(LIB) $(MLX_FLAGS) $(INCLUDE_BONUS) -o $(NAME_BONUS) 
 
 $(OBJ_BONUS_DIR)/%.o: $(SRC_BONUS_DIR)/%.c | $(OBJ_BONUS_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDE_BONUS) -c $< -o $@

@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:11:30 by roguigna          #+#    #+#             */
-/*   Updated: 2024/02/29 15:16:31 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/01 15:55:28 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,21 @@ void	fill_image(t_map *map)
 	}
 }
 
-void	copy_map_values(t_map *map)
+int	copy_map_values(t_map *map)
 {
 	int	x;
 	int	y;
 
 	map->z_value = malloc(sizeof(int *) * (map->size_y * map->size_x));
 	if (!map->z_value)
-		return ;
+		return (0);
 	y = 0;
 	while (y < map->size_y)
 	{
 		x = 0;
 		map->z_value[y] = malloc(sizeof(int) * (map->size_x));
 		if (!map->z_value[y])
-			return ;
+			return (0);
 		while (x < map->size_x)
 		{
 			map->z_value[y][x] = map->save_zvalue[y][x]
@@ -53,4 +53,5 @@ void	copy_map_values(t_map *map)
 		}
 		y++;
 	}
+	return (1);
 }

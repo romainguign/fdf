@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:18:42 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/01 15:30:48 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/01 16:41:57 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int rainbow_color(int z_value, int x, int y, t_map *map)
 	return (0);
 }
 
-int	**get_colors(t_map *map, int **color, int (*f)(int, int, int, t_map *))
+int	get_colors(t_map *map, int **color, int (*f)(int, int, int, t_map *))
 {
 	int	x;
 	int	y;
@@ -72,7 +72,7 @@ int	**get_colors(t_map *map, int **color, int (*f)(int, int, int, t_map *))
 		}
 		y++;
 	}
-	return (0);
+	return (1);
 }
 
 int	read_color(t_map *map)
@@ -82,4 +82,5 @@ int	read_color(t_map *map)
 		return 0;	
 	if (!get_colors(map, map->color, basics_colors))
 		return 0;
+	return (1);
 }

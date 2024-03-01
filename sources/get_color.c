@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:18:42 by roguigna          #+#    #+#             */
-/*   Updated: 2024/02/29 15:19:49 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/01 15:54:30 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	basics_colors(int z_value, int x, int y, t_map *map)
 	return (0);
 }
 
-int	**get_colors(t_map *map, int **color, int (*f)(int, int, int, t_map *))
+int	get_colors(t_map *map, int **color, int (*f)(int, int, int, t_map *))
 {
 	int	x;
 	int	y;
@@ -33,6 +33,8 @@ int	**get_colors(t_map *map, int **color, int (*f)(int, int, int, t_map *))
 	{
 		x = 0;
 		map->color[y] = malloc(sizeof(int) * map->size_x);
+		if (map->color[y] == NULL)
+			return (0);
 		while (x < map->size_x)
 		{
 			f(map->save_zvalue[y][x], x, y, map);
@@ -40,11 +42,15 @@ int	**get_colors(t_map *map, int **color, int (*f)(int, int, int, t_map *))
 		}
 		y++;
 	}
-	return (0);
+	return (1);
 }
 
-void	read_color(t_map *map)
+int	read_color(t_map *map)
 {
 	map->color = malloc(sizeof(int *) * (map->size_y * map->size_x));
-	get_colors(map, map->color, basics_colors);
+	if (!map->color)
+		return (0);
+	if (!get_colors(map, map->color, basics_colors))
+		return (0);
+	return (1);
 }
