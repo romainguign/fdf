@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:18:42 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/01 13:25:43 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/01 15:30:48 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,14 @@ int	**get_colors(t_map *map, int **color, int (*f)(int, int, int, t_map *))
 	int	y;
 
 	y = 0;
+	
 	while (y < map->size_y)
 	{
 		x = 0;
-		map->color[y] = malloc(sizeof(int) * map->size_x);
+		if (!map->color[y])
+			map->color[y] = malloc(sizeof(int) * map->size_x);
+		if (!map->color[y])
+			return (0);
 		while (x < map->size_x)
 		{
 			f(map->save[y][x].z, x, y, map);
@@ -71,8 +75,11 @@ int	**get_colors(t_map *map, int **color, int (*f)(int, int, int, t_map *))
 	return (0);
 }
 
-void	read_color(t_map *map)
+int	read_color(t_map *map)
 {
-	map->color = malloc(sizeof(int *) * (map->size_y * map->size_x));
-	get_colors(map, map->color, basics_colors);
+	map->color = ft_calloc(sizeof(int *), (map->size_y * map->size_x));
+	if (!map->color)
+		return 0;	
+	if (!get_colors(map, map->color, basics_colors))
+		return 0;
 }

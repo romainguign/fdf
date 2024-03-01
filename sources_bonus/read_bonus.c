@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:36 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/01 13:25:53 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/01 15:08:35 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	get_size_x(char *file_name)
 	}
 	free(line);
 	close(fd);
+	get_next_line(-1);
 	return (size_x);
 }
 
@@ -78,7 +79,6 @@ t_save_map	*get_line_value(char *buff, int len, int size_x, t_save_map **save, i
 			while (buff[i] != ' ' && buff[i] != '\n' && buff[i])
 				i++;
 			x++;
-			printf("%d ", save[y][x].z);
 		}
 		i++;
 	}
@@ -105,7 +105,6 @@ t_save_map	**get_values(char *file_name, t_save_map **save, int size_x, t_map *m
 			save[y] = get_line_value(buffer + len, i - len, size_x, save, y);
 			y++;
 			len = i;
-		printf("\n");
 		}
 		i++;
 	}
@@ -127,7 +126,7 @@ int read_map(char *file_name, t_map *map)
 	map->save = malloc(sizeof(t_save_map *) * (map->size_y * map->size_x));
 	if (!map->save)
 	{
-		free(map->save);
+		free_all(map);
 		return 0;
 	}
 	map->save = get_values(file_name, map->save,
