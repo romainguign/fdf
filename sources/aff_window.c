@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:05:52 by roguigna          #+#    #+#             */
-/*   Updated: 2024/02/29 17:24:58 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/25 13:45:47 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,6 @@ void	draw_img(t_map *map)
 	draw_top_left_to_bot_right(map);
 	draw_bottom_right(map);
 }
-
-// int	update(void *param)
-// {
-// 	t_map	*map;
-
-// 	map = (t_map *)param;
-// 	return (0);
-// }
 
 void	aff_window(t_map *map)
 {

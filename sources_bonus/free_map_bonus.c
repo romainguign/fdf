@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 18:19:18 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/01 15:11:32 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/07 14:30:56 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,19 @@ void	free_map(t_map *map)
 	free_two_d(map-> size_y, map);
 }
 
+void	free_save(int size_y, t_save_map **save)
+{
+	int	i;
+
+	i = 0;
+	while (i < size_y)
+	{
+		free(save[i]);
+		i++;
+	}	
+	free(save);
+}
+
 void	free_all(t_map *map)
 {
 	if (map->two_d_map)
@@ -46,7 +59,7 @@ void	free_all(t_map *map)
 	if (map->color)
 		free_tab(map->size_y, map->color);
 	if (map->save)
-		free_tab(map->size_y, map->save);
+		free_save(map->size_y, map->save);
 	if (map->z_value)
 		free_tab(map->size_y, map->z_value);
 	if (map->map_name)

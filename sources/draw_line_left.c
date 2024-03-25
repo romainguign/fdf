@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:03:49 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/01 13:04:08 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:13:01 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	bottom_letf_diag(t_map *map, t_line point, int dx, int dy)
 	{
 		if (point.x1 < WIDTH && point.y1 < HEIGHT)
 			mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1,
-				gradient_color(map, dx, dy, point));	
+				gradient_color(map));
 		point.x1 -= 1;
 		if (point.x1 == point.x2)
 			break ;
@@ -48,7 +48,7 @@ void	bottom_letf_vert(t_map *map, t_line point, int dx, int dy)
 	{
 		if (point.x1 < WIDTH && point.y1 < HEIGHT)
 			mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1,
-				gradient_color(map, dx, dy, point));
+				gradient_color(map));
 		point.y1 += 1;
 		if (point.y1 == point.y2)
 			break ;
@@ -72,7 +72,7 @@ void	top_left_diag(t_map *map, t_line point, int dx, int dy)
 	{
 		if (point.x1 < WIDTH && point.y1 < HEIGHT)
 			mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1,
-				gradient_color(map, dx, dy, point));
+				gradient_color(map));
 		point.x1 -= 1;
 		if (point.x1 == point.x2)
 			break ;
@@ -96,7 +96,7 @@ void	top_left_vert(t_map *map, t_line point, int dx, int dy)
 	{
 		if (point.x1 < WIDTH && point.y1 < HEIGHT)
 			mlx_set_image_pixel(map->mlx, map->img, point.x1, point.y1,
-				gradient_color(map, dx, dy, point));
+				gradient_color(map));
 		point.y1 -= 1;
 		if (point.y1 == point.y2)
 			break ;

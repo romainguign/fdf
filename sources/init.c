@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:44 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/08 18:10:28 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/25 13:46:26 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_map	*map_init(void)
 {
 	t_map	*map;
 
-	map = malloc(sizeof(t_map));
+	map = ft_calloc(sizeof(t_map), 1);
 	if (!map)
 		return (0);
 	map->left_mouse_status = 0;

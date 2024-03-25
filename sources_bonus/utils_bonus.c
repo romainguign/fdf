@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:33 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/01 13:26:13 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:07:16 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,19 @@ int	ft_count_size_x(const char *str, char c)
 	if (!str[i] && str[i - 1] != c)
 		count++;
 	return (count);
+}
+
+void	free_char_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	if (!tab)
+		return ;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free (tab);
 }

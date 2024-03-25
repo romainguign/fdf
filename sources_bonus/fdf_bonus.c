@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:41 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/01 18:05:22 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:57:38 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	map_infos(t_map *map, char **argv)
 		return (0);
 	return (1);
 }
+
 int	main(int argc, char **argv)
 {
 	t_map		*map;
@@ -42,10 +43,8 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Parsing error !\n", 2);
 		return (1);
 	}
-	printf("%d",map->save[3][4].z);	 fflush(stdout);
-	// print_map(map);
-	// aff_window(map);
-	// free_all(map);
+	aff_window(map);
+	free_all(map);
 	return (0);
 }
  

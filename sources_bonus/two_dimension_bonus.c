@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:47:36 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/01 17:13:44 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/07 13:32:49 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,15 @@ t_twoD	**make_twod_map(t_map *map, t_twoD **two_d_map)
 	int	x;
 
 	if (!two_d_map)
-		two_d_map = malloc(sizeof(t_twoD *) * (map->size_y * map->size_x));
+		two_d_map = ft_calloc(sizeof(t_twoD *), (map->size_y * map->size_x));
 	if (!two_d_map)
 		return (0);
 	y = 0;
 	while (y < map->size_y)
 	{
 		x = 0;
-		two_d_map[y] = malloc(sizeof(t_twoD) * map->size_x);
+		if (two_d_map[y] == NULL)
+			two_d_map[y] = ft_calloc(sizeof(t_twoD), map->size_x);
 		while (x < map->size_x)
 		{
 			two_d_map[y][x] = to_two_d(map, x, y, two_d_map[y][x]);

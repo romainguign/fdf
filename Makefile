@@ -6,7 +6,7 @@
 #    By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/06 12:50:47 by roguigna          #+#    #+#              #
-#    Updated: 2024/03/01 16:46:06 by roguigna         ###   ########.fr        #
+#    Updated: 2024/03/25 18:16:47 by roguigna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,11 @@ LIBMLX_DIR 		= MacroLibX
 
 MacroLibX		= $(LIBMLX_DIR)/libmlx.so
 
-LIBFT			= libft/libft
+LIBFT			= libft/libft.a
 
 CC				= cc
 
-FLAGS 			= -Wall -Wextra - Werror
+CFLAGS 			= -Wall -Wextra -Werror
 
 INCLUDE			= -I MacroLibX/includes -I libft/includes -I includes
 
@@ -44,8 +44,8 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 
-##############################  SOURCES  #####################################
 
+##############################  SOURCES  #####################################
 
 SRC_DIR			= sources
 
@@ -56,23 +56,24 @@ OBJ_DIR			= object
 OBJ_BONUS_DIR	= object_bonus
 
 SRC_FILES		= aff_window.c draw_full_map.c draw_line_left.c draw_line_right.c \
-				  draw.c events.c fdf.c free_map.c get_color.c init.c read_value.c \
-				  read.c two_dimension.c update_values.c utils.c tester.c 
+				  draw.c events.c fdf.c free_map.c get_color.c init.c read.c \
+				  two_dimension.c update_values.c utils.c
 
 SRC_BONUS_FILES	= aff_window_bonus.c draw_full_map_bonus.c draw_line_left_bonus.c draw_line_right_bonus.c \
 				  draw_bonus.c events_bonus.c fdf_bonus.c free_map_bonus.c get_color_bonus.c init_bonus.c read_value_bonus.c \
-				  read_bonus.c two_dimension_bonus.c update_values_bonus.c utils_bonus.c modif_map_bonus.c tester.c
-				
-###########   supprimertester.c
+				  read_bonus.c two_dimension_bonus.c update_values_bonus.c utils_bonus.c modif_map_bonus.c
 
 OBJ             = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
 OBJ_BONUS		= $(addprefix $(OBJ_BONUS_DIR)/, $(SRC_BONUS_FILES:.c=.o))
 
+
+##############################  RULES  #######################################
+
 all: $(NAME) ascii
 
 $(NAME): $(MacroLibX) $(LIBFT) $(OBJ) 
-	@$(CC) -g $(OBJ) $(LIB) $(MLX_FLAGS) $(INCLUDE) -o $(NAME) 
+	@$(CC) -g $(OBJ) $(LIB) $(MLX_FLAGS) $(INCLUDE) -o $(NAME) $(CFLAGS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
@@ -86,20 +87,20 @@ $(OBJ_DIR) $(OBJ_BONUS_DIR):
 $(LIBFT):
 	@make --quiet -C libft 
 
-bonus: $(NAME_BONUS) ascii
+bonus: $(NAME_BONUS)
 
-$(NAME_BONUS): $(MacroLibX) $(LIBFT) $(OBJ_BONUS) 
-	@$(CC) -g3 $(OBJ_BONUS) $(LIB) $(MLX_FLAGS) $(INCLUDE_BONUS) -o $(NAME_BONUS) 
+$(NAME_BONUS): $(MacroLibX) $(LIBFT) $(OBJ_BONUS) ascii
+	@$(CC) -g3 $(OBJ_BONUS) $(LIB) $(MLX_FLAGS) $(CFLAGS) $(INCLUDE_BONUS) -o $(NAME_BONUS)  -g3
 
 $(OBJ_BONUS_DIR)/%.o: $(SRC_BONUS_DIR)/%.c | $(OBJ_BONUS_DIR)
-	@$(CC) $(CFLAGS) $(INCLUDE_BONUS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDE_BONUS) -c $< -o $@ -g3
 
 ascii:
 	@echo "${CYAN}"
-	@echo "\t\t_______________ ______       _________             ________              "
-	@echo "\t\t___  ____/___(_)___  /       ______  /_____        ___  __/_____ ________"
-	@echo "\t\t__  /_    __  / __  /        _  __  / _  _ \       __  /_  _  _ \__  ___/"
-	@echo "\t\t_  __/    _  /  _  /         / /_/ /  /  __/       _  __/  /  __/_  /    "
+	@echo "\t\t__________ ____ ______       _________             ________              "
+	@echo "\t\t___  ____/ __(_)___  /       ______  /_____        ___  __/_____ ________"
+	@echo "\t\t__  /_     _  / __  /        _  __  / _  _ \       __  /_  _  _ \__  ___/"
+	@echo "\t\t_  __/     / /  _  /         / /_/ /  /  __/       _  __/  /  __/_  /    "
 	@echo "\t\t/_/       /_/   /_/          \__,_/   \___/        /_/     \___/ /_/     "
 	@echo "\t\t                                                                        "
 	@echo "${DEF_COLOR}"

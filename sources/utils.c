@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:33 by roguigna          #+#    #+#             */
-/*   Updated: 2024/01/08 15:56:41 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:06:58 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,21 @@ char	*get_file(char *file)
 	}
 	free(buffer);
 	return (str);
+}
+
+void	free_char_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	if (!tab)
+		return ;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free (tab);
 }
 
 int	ft_count_size_x(const char *str, char c)

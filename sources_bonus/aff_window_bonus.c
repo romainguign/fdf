@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:05:52 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/01 17:45:06 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:21:51 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	refresh_img(t_map *map)
 
 void	draw_img(t_map *map)
 {
-	free_two_d(map->size_y, map);
+	// free_two_d(map->size_y, map);
 	map->two_d_map = make_twod_map(map, map->two_d_map);
 	draw_top_left_to_bot_right(map);
 	draw_bottom_right(map);
@@ -40,7 +40,7 @@ int	update(void *param)
 	if (map->choosen_color == 2 && i > 1500)
 	{
 		i = 0;
-		get_colors(map, map->color, rainbow_color);
+		get_colors(map, rainbow_color);
 		refresh_img(map);
 	}
 	i++;
@@ -52,7 +52,6 @@ void	aff_window(t_map *map)
 	map->pos = malloc(sizeof(t_pos));
 	if (!map->pos)
 		return ;
-	print_map(map);
 	map->pos->x = 0;
 	map->pos->y = 0;
 	map->mlx = mlx_init();
