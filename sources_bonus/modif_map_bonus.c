@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 16:36:35 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/01 13:25:48 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:35:44 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	shift_map(t_map *map)
 	}
 	x = map->cur_x;
 	y = map->cur_y;
-	
 	refresh_img(map);
 }
 

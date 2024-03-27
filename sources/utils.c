@@ -6,67 +6,11 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:33 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/25 17:06:58 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:11:28 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-static char	*ft_strjoin_get_fil_ver(char *s1, char *s2)
-{
-	unsigned int	i;
-	unsigned int	j;
-	char			*str;
-
-	i = ft_strlen((char *)s1) + ft_strlen((char *)s2);
-	str = malloc((i + 2) * sizeof(char));
-	if (str == NULL)
-	{
-		free(s1);
-		return (NULL);
-	}
-	i = 0;
-	while (s1 && s1[i])
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	j = -1;
-	while (s2 && s2[++j])
-		str[i + j] = s2[j];
-	str[i + j] = 0;
-	if (s1 != NULL)
-		free(s1);
-	return (str);
-}
-
-char	*get_file(char *file)
-{
-	char	*buffer;
-	char	*str;
-	int		fd;
-	int		ret;
-
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		return (NULL);
-	buffer = malloc((64 + 1) * sizeof(char));
-	if (buffer == NULL)
-		return (NULL);
-	str = NULL;
-	while (1)
-	{
-		ret = read(fd, buffer, 64);
-		if (ret <= 0)
-			break ;
-		buffer[ret] = 0;
-		str = ft_strjoin_get_fil_ver(str, buffer);
-		if (str == NULL)
-			break ;
-	}
-	free(buffer);
-	return (str);
-}
 
 void	free_char_tab(char **tab)
 {
@@ -81,6 +25,21 @@ void	free_char_tab(char **tab)
 		i++;
 	}
 	free (tab);
+}
+
+int	calc_size_x(char *line, int fd, int save)
+{
+	int	size_x;
+
+	while (line)
+	{
+		size_x = ft_count_size_x(line, ' ');
+		free(line);
+		if (size_x != save)
+			break ;
+		line = get_next_line(fd);
+	}
+	return (size_x);
 }
 
 int	ft_count_size_x(const char *str, char c)
@@ -101,4 +60,18 @@ int	ft_count_size_x(const char *str, char c)
 	if (!str[i] && str[i - 1] != c)
 		count++;
 	return (count);
+}
+
+int	file_type(char *file_name)
+{
+	int	i;
+
+	i = 0;
+	while (file_name[i])
+		i++;
+	i--;
+	if (file_name[i] != 'f' || file_name[i - 1] != 'd'
+		|| file_name[i - 2] != 'f' || file_name[i - 3] != '.')
+		return (0);
+	return (1);
 }

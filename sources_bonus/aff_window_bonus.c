@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:05:52 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/25 18:21:51 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:30:04 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	refresh_img(t_map *map)
 
 void	draw_img(t_map *map)
 {
-	// free_two_d(map->size_y, map);
 	map->two_d_map = make_twod_map(map, map->two_d_map);
 	draw_top_left_to_bot_right(map);
 	draw_bottom_right(map);
@@ -29,10 +28,10 @@ void	draw_img(t_map *map)
 
 int	update(void *param)
 {
-	t_map	*map;
+	t_map		*map;
+	static int	i;
 
 	map = (t_map *)param;
-	static int i;
 	if (!i)
 		i = 0;
 	if (map->left_mouse_status == 1)

@@ -6,7 +6,7 @@
 #    By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/06 12:50:47 by roguigna          #+#    #+#              #
-#    Updated: 2024/03/25 18:16:47 by roguigna         ###   ########.fr        #
+#    Updated: 2024/03/26 18:23:03 by roguigna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ SRC_FILES		= aff_window.c draw_full_map.c draw_line_left.c draw_line_right.c \
 
 SRC_BONUS_FILES	= aff_window_bonus.c draw_full_map_bonus.c draw_line_left_bonus.c draw_line_right_bonus.c \
 				  draw_bonus.c events_bonus.c fdf_bonus.c free_map_bonus.c get_color_bonus.c init_bonus.c read_value_bonus.c \
-				  read_bonus.c two_dimension_bonus.c update_values_bonus.c utils_bonus.c modif_map_bonus.c
+				  read_bonus.c two_dimension_bonus.c update_values_bonus.c utils_bonus.c modif_map_bonus.c custom_colors_bonus.c
 
 OBJ             = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
@@ -73,7 +73,7 @@ OBJ_BONUS		= $(addprefix $(OBJ_BONUS_DIR)/, $(SRC_BONUS_FILES:.c=.o))
 all: $(NAME) ascii
 
 $(NAME): $(MacroLibX) $(LIBFT) $(OBJ) 
-	@$(CC) -g $(OBJ) $(LIB) $(MLX_FLAGS) $(INCLUDE) -o $(NAME) $(CFLAGS)
+	@$(CC) -g $(OBJ) $(LIB) $(CFLAGS) $(MLX_FLAGS) $(INCLUDE) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
@@ -87,13 +87,13 @@ $(OBJ_DIR) $(OBJ_BONUS_DIR):
 $(LIBFT):
 	@make --quiet -C libft 
 
-bonus: $(NAME_BONUS)
+bonus: $(NAME_BONUS) ascii
 
-$(NAME_BONUS): $(MacroLibX) $(LIBFT) $(OBJ_BONUS) ascii
-	@$(CC) -g3 $(OBJ_BONUS) $(LIB) $(MLX_FLAGS) $(CFLAGS) $(INCLUDE_BONUS) -o $(NAME_BONUS)  -g3
+$(NAME_BONUS): $(MacroLibX) $(LIBFT) $(OBJ_BONUS)
+	@$(CC) -g $(OBJ_BONUS) $(LIB) $(MLX_FLAGS) $(CFLAGS) $(INCLUDE_BONUS) -o $(NAME_BONUS)
 
 $(OBJ_BONUS_DIR)/%.o: $(SRC_BONUS_DIR)/%.c | $(OBJ_BONUS_DIR)
-	@$(CC) $(CFLAGS) $(INCLUDE_BONUS) -c $< -o $@ -g3
+	@$(CC) $(CFLAGS) $(INCLUDE_BONUS) -c $< -o $@ -g
 
 ascii:
 	@echo "${CYAN}"
@@ -121,4 +121,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus ascii

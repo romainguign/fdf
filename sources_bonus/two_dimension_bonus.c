@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:47:36 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/07 13:32:49 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:34:59 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_twoD	to_two_d(t_map *map, int x, int y, t_twoD tab)
 		sizing_y = 0;
 	x_aff = (x + sizing_x * (x + 1));
 	y_aff = (y + sizing_y * (y + 1));
-	tab.x = (x_aff - y_aff + WIDTH / 2) * (sqrt(4) / 2)   - map->x_shift;
+	tab.x = (x_aff - y_aff + WIDTH / 2) * (sqrt(4) / 2) - map->x_shift;
 	tab.y = (x_aff + y_aff) * (1.0 / 2) - map->z_value[y][x] - map->y_shift;
 	return (tab);
 }

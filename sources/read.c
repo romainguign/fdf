@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:50:36 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/25 18:11:33 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:23:45 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	get_size_y(char *file_name)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			break;
+			break ;
 		free(line);
 		size_y++;
 	}
@@ -39,26 +39,31 @@ int	get_size_x(char *file_name)
 	int		fd;
 	int		size_x;
 	char	*line;
+	int		save;
 
 	fd = open(file_name, O_RDONLY);
-	size_x = 0;
-	while (1)
+	if (fd == -1)
+		return (0);
+	line = get_next_line(fd);
+	if (!line)
 	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		size_x = ft_count_size_x(line, ' ');
-		free(line);
+		close (fd);
+		return (0);
 	}
+	save = ft_count_size_x(line, ' ');
+	size_x = calc_size_x(line, fd, save);
 	close(fd);
+	get_next_line(-1);
+	if (size_x != save)
+		return (0);
 	return (size_x);
 }
 
 int	*get_line_value(char *line, t_map *map)
 {
-	int	i;
-	int	x;
-	int	*save_zvalue;
+	int		i;
+	int		x;
+	int		*save_zvalue;
 	char	**splited_line;
 
 	i = 0;
@@ -93,7 +98,6 @@ int	**get_values(char *file_name, int **save_zvalue, t_map *map)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		
 		save_zvalue[y] = get_line_value(line, map);
 		free(line);
 		y++;

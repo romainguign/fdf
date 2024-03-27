@@ -6,7 +6,7 @@
 /*   By: roguigna <roguigna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 18:19:18 by roguigna          #+#    #+#             */
-/*   Updated: 2024/03/07 14:30:56 by roguigna         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:33:23 by roguigna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	free_save(int size_y, t_save_map **save)
 	{
 		free(save[i]);
 		i++;
-	}	
+	}
 	free(save);
 }
 
